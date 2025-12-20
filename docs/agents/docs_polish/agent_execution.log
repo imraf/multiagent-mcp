@@ -1,0 +1,17 @@
+YOLO mode is enabled. All tool calls will be automatically approved.
+Loaded cached credentials.
+[STARTUP] StartupProfiler.flush() called with 9 phases
+[STARTUP] Recording metric for phase: cli_startup duration: 879.1076670000002
+[STARTUP] Recording metric for phase: load_settings duration: 0.9867500000000291
+[STARTUP] Recording metric for phase: migrate_settings duration: 0.5877080000000205
+[STARTUP] Recording metric for phase: parse_arguments duration: 9.182334000000083
+[STARTUP] Recording metric for phase: load_cli_config duration: 10.847833000000037
+[STARTUP] Recording metric for phase: initialize_app duration: 854.0565839999999
+[STARTUP] Recording metric for phase: authenticate duration: 845.5527089999998
+[STARTUP] Recording metric for phase: discover_tools duration: 3.9132919999997284
+[STARTUP] Recording metric for phase: initialize_mcp_clients duration: 437.95199999999977
+I will start by creating the mandatory empty commit to signal the beginning of my work on the `agent/docs-polish` branch.
+
+Error when talking to Gemini API Full report available at: /var/folders/6m/59vjq24x53x6y8nd5l_3_wyhthn7f6/T/gemini-client-error-Turn.run-sendMessageStream-2025-12-20T15-36-40-309Z.json
+[API Error: You have exhausted your capacity on this model. Your quota will reset after 16h12m29s.]
+An unexpected critical error occurred:[object Object]

@@ -1,0 +1,16 @@
+YOLO mode is enabled. All tool calls will be automatically approved.
+Loaded cached credentials.
+[STARTUP] StartupProfiler.flush() called with 9 phases
+[STARTUP] Recording metric for phase: cli_startup duration: 1311.0161659999999
+[STARTUP] Recording metric for phase: load_settings duration: 1.185707999999977
+[STARTUP] Recording metric for phase: migrate_settings duration: 0.6062919999999394
+[STARTUP] Recording metric for phase: parse_arguments duration: 9.362625000000207
+[STARTUP] Recording metric for phase: load_cli_config duration: 10.798166999999921
+[STARTUP] Recording metric for phase: initialize_app duration: 1286.841625
+[STARTUP] Recording metric for phase: authenticate duration: 1283.7223749999998
+[STARTUP] Recording metric for phase: discover_tools duration: 1.7687919999998485
+[STARTUP] Recording metric for phase: initialize_mcp_clients duration: 392.0156670000001
+Attempt 1 failed: You have exhausted your capacity on this model. Your quota will reset after 0s.. Retrying after 419.91691599999996ms...
+Error when talking to Gemini API Full report available at: /var/folders/6m/59vjq24x53x6y8nd5l_3_wyhthn7f6/T/gemini-client-error-Turn.run-sendMessageStream-2025-12-20T15-36-34-258Z.json
+[API Error: You have exhausted your capacity on this model. Your quota will reset after 16h12m35s.]
+An unexpected critical error occurred:[object Object]
