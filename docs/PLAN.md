@@ -15,6 +15,42 @@ This comprehensive plan outlines the development of a modular, production-grade 
 
 ---
 
+## Parallel Development Strategy (Git Worktrees)
+To adhere to the "One Branch per Agent" pattern and maximize efficiency, development is split into parallel tracks using Git Worktrees. This allows simultaneous progress on independent modules.
+
+### Obligatory Agent Workflow
+Every agent working on a branch must follow this strict commit protocol:
+1.  **Initial Commit:** Immediately after creating/checkout of the branch, create an empty commit: `git commit --allow-empty -m "chore: start work on <branch-name>"`
+2.  **Incremental Commits:** Commit progress after completing **every logical step** or sub-task defined in the plan. Do not wait until the entire stage is finished.
+3.  **Descriptive Messages:** Use semantic commit messages (e.g., `feat: implement config loader`, `test: add logging unit tests`).
+
+### Phase 1: Foundation & Core
+*Run concurrently*
+- **Branch:** `agent/infrastructure` (Worktree: `../mcp-infra`)
+  - **Scope:** Stage 1 (Config, Logging, Exceptions).
+- **Branch:** `agent/core-domain` (Worktree: `../mcp-core`)
+  - **Scope:** Stage 2.1 & 2.2 (Pydantic Models, Storage Interfaces).
+
+### Phase 2: Business Logic & Transport
+*Run concurrently after Phase 1 merge*
+- **Branch:** `agent/customer-module` (Worktree: `../mcp-customers`)
+  - **Scope:** Customer Service, Repository implementation, Customer Tools.
+- **Branch:** `agent/invoice-module` (Worktree: `../mcp-invoices`)
+  - **Scope:** Invoice Service, VAT Logic, Invoice Tools.
+- **Branch:** `agent/transport` (Worktree: `../mcp-transport`)
+  - **Scope:** Stage 4 (Transport Abstraction, Stdio/SSE implementations).
+
+### Phase 3: Expansion & Clients
+*Run concurrently after Phase 2 merge*
+- **Branch:** `agent/advanced-primitives` (Worktree: `../mcp-primitives`)
+  - **Scope:** Stage 3 (Resources, Prompts, Advanced Tools).
+- **Branch:** `agent/sdk-cli` (Worktree: `../mcp-clients`)
+  - **Scope:** Stage 5 (Python SDK, CLI, Dashboard).
+- **Branch:** `agent/docs-polish` (Worktree: `../mcp-docs`)
+  - **Scope:** Stage 6 (Documentation, README, Install Scripts).
+
+---
+
 ## Stage 1: Basic Infrastructure
 **Goal:** Establish a rock-solid foundation with enterprise patterns (Singleton Config, Structured Logging, Typed Exceptions).
 
