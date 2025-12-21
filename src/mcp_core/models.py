@@ -10,6 +10,7 @@ class Customer(BaseModel):
     email: EmailStr = Field(..., description="Contact email address")
     vat_id: Optional[str] = Field(None, description="VAT ID if applicable")
     address: Optional[str] = Field(None, description="Billing address")
+    version: int = Field(default=0, description="Version number for optimistic locking")
 
     @field_validator('vat_id')
     @classmethod
@@ -42,6 +43,7 @@ class Invoice(BaseModel):
     items: List[InvoiceItem] = Field(default_factory=list, description="List of invoice items")
     status: InvoiceStatus = Field(default=InvoiceStatus.DRAFT, description="Current status of the invoice")
     tax_rate: Decimal = Field(default=Decimal("0.0"), ge=0, le=1, description="Tax rate as a decimal (e.g. 0.21 for 21%)")
+    version: int = Field(default=0, description="Version number for optimistic locking")
     
     @property
     def subtotal(self) -> Decimal:
