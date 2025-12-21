@@ -31,6 +31,9 @@ class InvoiceService:
     def get_invoice(self, invoice_id: str) -> Optional[Invoice]:
         return self.repository.get(invoice_id)
 
+    def list_invoices(self) -> List[Invoice]:
+        return self.repository.list()
+
     def update_draft(self, invoice: Invoice) -> Invoice:
         """
         Updates an existing draft invoice.
