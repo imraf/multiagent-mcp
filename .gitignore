@@ -10,3 +10,6 @@ wheels/
 .venv
 
 *.DS_Store
+
+*.log
+progress.json
