@@ -3,7 +3,7 @@
 # Orchestration Script for Multi-Agent MCP Project
 # Usage: ./orchestrate.sh
 
-GEMINI_BIN="/opt/homebrew/bin/gemini"
+CODER_BIN="/opt/homebrew/bin/gemini"
 REPO_ROOT=$(pwd)
 WORKTREES_DIR="../worktrees" # Storing worktrees in a sibling directory to keep things clean
 
@@ -64,7 +64,7 @@ $PROMPT_CONTENT
         echo "   Agent $AGENT_NAME started working in $(pwd)..."
         # Invoke gemini with the prompt
         # Assuming -s is for system/silent and -p is for prompt
-        "$GEMINI_BIN" -s -y -p "$FINAL_PROMPT" >> "$LOG_FILE" 2>&1
+        "$CODER_BIN" run "$FINAL_PROMPT" >> "$LOG_FILE" 2>&1
         echo "   ✅ Agent $AGENT_NAME finished."
     ) &
     
