@@ -81,9 +81,8 @@ class JsonFileRepository(Repository[T]):
                         # Increment version for update
                         setattr(entity, 'version', current_version + 1)
                     else:
-                        # New entity, ensure version starts at 1 (or 0 if preferred, but usually 1 on creation or 0->1)
-                         # Let's say if it's 0 coming in, we make it 1.
-                         pass 
+                        # New entity, ensure version starts at 1
+                         setattr(entity, 'version', 1)
                 
                 # Update data
                 entity_dict = entity.model_dump(mode='json')
