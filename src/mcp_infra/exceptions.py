@@ -1,0 +1,42 @@
+from typing import Any, Dict, Optional, Type
+from pydantic import BaseModel, Field
+
+class ErrorResponse(BaseModel):
+    """Standardized error response structure."""
+    error: str = Field(..., description="Error code or type")
+    message: str = Field(..., description="Human-readable error message")
+    details: Optional[Dict[str, Any]] = Field(default=None, description="Additional error context")
+    request_id: Optional[str] = Field(default=None, description="Tracing ID")
+
+class MCPException(Exception):
+    """Base exception for all MCP related errors."""
+    def __init__(
+        self, 
+        message: str, 
+        details: Optional[Dict[str, Any]] = None,
+        original_error: Optional[Exception] = None
+    ):
+        super().__init__(message)
+        self.message = message
+        self.details = details or {}
+        self.original_error = original_error
+
+    def to_response(self, request_id: Optional[str] = None) -> ErrorResponse:
+        return ErrorResponse(
+            error=self.__class__.__name__,
+            message=self.message,
+            details=self.details,
+            request_id=request_id
+        )
+
+class ConfigurationError(MCPException):
+    """Raised when configuration is invalid or missing."""
+    pass
+
+class InfrastructureError(MCPException):
+    """Raised when underlying infrastructure fails (IO, Network, etc)."""
+    pass
+
+class ServiceUnavailableError(InfrastructureError):
+    """Raised when a dependent service is unreachable."""
+    pass
