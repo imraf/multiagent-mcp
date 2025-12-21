@@ -1,6 +1,5 @@
 # MCP Agent Foundation
 
-[![CI/CD](https://github.com/yourusername/mcp-docs/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/mcp-docs/actions)
 [![Python Version](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Code Style: Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
@@ -19,8 +18,8 @@ The project is structured around a clean separation of concerns, ensuring that d
 graph TD
     subgraph "Client Layer"
         CLI[CLI (mcp_cli)]
-        SDK[Python SDK (mcp_client)]
-    end
+        SDK["CLI (mcp_cli)"]
+        SDK["Python SDK (mcp_client)"
 
     subgraph "Transport Layer (mcp_transport)"
         SSE[SSE Transport]
