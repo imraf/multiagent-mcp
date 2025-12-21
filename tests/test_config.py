@@ -1,7 +1,5 @@
-import os
-import pytest
-from pathlib import Path
 from mcp_infra.config import Config
+
 
 def test_config_defaults():
     """Test default values."""
@@ -15,7 +13,7 @@ def test_config_env_vars(monkeypatch):
     monkeypatch.setenv("MCP_APP__ENVIRONMENT", "production")
     monkeypatch.setenv("MCP_APP__DEBUG", "true")
     monkeypatch.setenv("MCP_LOGGING__LEVEL", "DEBUG")
-    
+
     config = Config()
     assert config.app.environment == "production"
     assert config.app.debug is True
@@ -32,7 +30,7 @@ def test_config_yaml_loading(tmp_path):
       level: "WARNING"
     """
     config_file.write_text(content)
-    
+
     config = Config.load(config_file)
     assert config.app.service_name == "test-service"
     assert config.app.environment == "staging"
@@ -49,13 +47,13 @@ def test_config_hierarchy(tmp_path, monkeypatch):
       environment: "yaml-env"
       service_name: "yaml-service"
     """)
-    
+
     # 2. Setup Env Var (should override YAML)
     monkeypatch.setenv("MCP_APP__ENVIRONMENT", "env-env")
-    
+
     # 3. Load
     config = Config.load(config_file)
-    
+
     # Check hierarchy
     assert config.app.environment == "env-env"  # Env wins
     assert config.app.service_name == "yaml-service"  # YAML wins over default

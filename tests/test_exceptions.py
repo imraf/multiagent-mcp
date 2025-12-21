@@ -1,16 +1,16 @@
-import pytest
 from mcp_infra.exceptions import (
-    MCPException,
     ConfigurationError,
     InfrastructureError,
+    MCPException,
     ServiceUnavailableError,
 )
+
 
 def test_mcp_exception_base():
     """Test base exception functionality."""
     err = MCPException("Something went wrong", details={"foo": "bar"})
     response = err.to_response(request_id="123")
-    
+
     assert response.error == "MCPException"
     assert response.message == "Something went wrong"
     assert response.details == {"foo": "bar"}
@@ -26,11 +26,11 @@ def test_nested_exceptions():
     """Test wrapping original errors."""
     original = ValueError("bad value")
     err = ConfigurationError("Invalid config", original_error=original)
-    
+
     assert err.original_error == original
     assert str(err) == "Invalid config"
-    
-    # Response shouldn't leak original error stack trace by default, 
+
+    # Response shouldn't leak original error stack trace by default,
     # but application logic might decide to log it.
     resp = err.to_response()
     assert resp.error == "ConfigurationError"

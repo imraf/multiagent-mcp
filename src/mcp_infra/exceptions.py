@@ -1,27 +1,29 @@
-from typing import Any, Dict, Optional, Type
+from typing import Any
+
 from pydantic import BaseModel, Field
+
 
 class ErrorResponse(BaseModel):
     """Standardized error response structure."""
     error: str = Field(..., description="Error code or type")
     message: str = Field(..., description="Human-readable error message")
-    details: Optional[Dict[str, Any]] = Field(default=None, description="Additional error context")
-    request_id: Optional[str] = Field(default=None, description="Tracing ID")
+    details: dict[str, Any] | None = Field(default=None, description="Additional error context")
+    request_id: str | None = Field(default=None, description="Tracing ID")
 
 class MCPException(Exception):
     """Base exception for all MCP related errors."""
     def __init__(
-        self, 
-        message: str, 
-        details: Optional[Dict[str, Any]] = None,
-        original_error: Optional[Exception] = None
+        self,
+        message: str,
+        details: dict[str, Any] | None = None,
+        original_error: Exception | None = None
     ):
         super().__init__(message)
         self.message = message
         self.details = details or {}
         self.original_error = original_error
 
-    def to_response(self, request_id: Optional[str] = None) -> ErrorResponse:
+    def to_response(self, request_id: str | None = None) -> ErrorResponse:
         return ErrorResponse(
             error=self.__class__.__name__,
             message=self.message,

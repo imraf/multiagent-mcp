@@ -1,9 +1,11 @@
 import logging
 import sys
 from pathlib import Path
-from typing import Any, Optional
+
 import structlog
+
 from mcp_infra.config import LogConfig
+
 
 def configure_logging(
     config: LogConfig,
@@ -17,7 +19,7 @@ def configure_logging(
     - File handler (if configured)
     - Context vars (service_name)
     """
-    
+
     # Shared processors for both structlog and stdlib logging
     processors = [
         structlog.contextvars.merge_contextvars,
@@ -44,7 +46,7 @@ def configure_logging(
     # Standard library logging configuration
     root_logger = logging.getLogger()
     root_logger.setLevel(config.level.upper())
-    
+
     # Clear existing handlers
     root_logger.handlers = []
 
@@ -66,12 +68,12 @@ def configure_logging(
     if config.file_path:
         log_path = Path(config.file_path)
         log_path.parent.mkdir(parents=True, exist_ok=True)
-        
+
         # Basic file handler - in production ideally use a rotating one,
         # but for this scope, a standard FileHandler is a good start.
         # User prompt asked for "log rotation", so let's use RotatingFileHandler.
         from logging.handlers import RotatingFileHandler
-        
+
         file_handler = RotatingFileHandler(
             config.file_path,
             maxBytes=10 * 1024 * 1024, # 10MB
@@ -83,6 +85,6 @@ def configure_logging(
     # Set initial context
     structlog.contextvars.bind_contextvars(service=service_name)
 
-def get_logger(name: Optional[str] = None) -> structlog.stdlib.BoundLogger:
+def get_logger(name: str | None = None) -> structlog.stdlib.BoundLogger:
     """Get a structured logger instance."""
     return structlog.get_logger(name)
