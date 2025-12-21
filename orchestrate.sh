@@ -3,7 +3,7 @@
 # Orchestration Script for Multi-Agent MCP Project
 # Usage: ./orchestrate.sh
 
-CODER_BIN="/opt/homebrew/bin/gemini"
+CODER_BIN="opencode"
 REPO_ROOT=$(pwd)
 WORKTREES_DIR="../worktrees" # Storing worktrees in a sibling directory to keep things clean
 
