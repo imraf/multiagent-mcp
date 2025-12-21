@@ -13,7 +13,11 @@ dependencies = [
     "fastapi>=0.100.0",
     "uvicorn>=0.20.0",
     "sse-starlette>=1.6.0",
-    "mcp>=0.1.0",
+    "mcp>=0.1.0"
+    "httpx>=0.24.0",
+    "typer>=0.9.0",
+    "rich>=13.0.0",
+    "shellingham>=1.5.0",
     "jinja2>=3.0.0"
 ]
 
