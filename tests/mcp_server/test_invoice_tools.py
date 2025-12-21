@@ -1,7 +1,15 @@
+import sys
+from unittest.mock import MagicMock
+
+# Mock mcp module before importing mcp_server.tools
+mcp_mock = MagicMock()
+sys.modules["mcp"] = mcp_mock
+sys.modules["mcp.server"] = mcp_mock
+sys.modules["mcp.server.fastmcp"] = mcp_mock
+
 import pytest
 import json
 from decimal import Decimal
-from unittest.mock import MagicMock, patch
 from mcp_server.tools import register_invoice_tools, invoice_service, invoice_repo
 from mcp_core.models import Invoice, InvoiceStatus, InvoiceItem
 
