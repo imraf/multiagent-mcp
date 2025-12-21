@@ -17,9 +17,9 @@ The project is structured around a clean separation of concerns, ensuring that d
 ```mermaid
 graph TD
     subgraph "Client Layer"
-        CLI[CLI (mcp_cli)]
-        SDK["CLI (mcp_cli)"]
-        SDK["Python SDK (mcp_client)"
+        CLI["CLI (mcp_cli)"]
+        SDK["Python SDK (mcp_client)"]
+    end
 
     subgraph "Transport Layer (mcp_transport)"
         SSE[SSE Transport]
