@@ -59,6 +59,14 @@ run_agent() {
     echo "   Setting up worktree at $WORKTREE_PATH..."
     git worktree add --force "$WORKTREE_PATH" "$BRANCH_NAME"
 
+    # Copy opencode.json to the worktree
+    if [ -f "$REPO_ROOT/opencode.json" ]; then
+        echo "   Copying opencode.json to worktree..."
+        cp "$REPO_ROOT/opencode.json" "$WORKTREE_PATH/"
+    else
+        echo "   ⚠️  Warning: opencode.json not found in root. Agent might fail if it depends on it."
+    fi
+
     # 2. Prepare Prompt
     # Concatenate PROMPT, SKILLS, and PLAN
     local PROMPT_CONTENT=$(cat "$AGENT_DIR/PROMPT.md" "$AGENT_DIR/SKILLS.md" "$AGENT_DIR/PLAN.md")
@@ -73,7 +81,7 @@ CONTEXT:
 $PROMPT_CONTENT
 
 IMPORTANT - PROGRESS TRACKING:
-You have a progress tracking file at: $PROGRESS_FILE
+You have a progress tracking file at: progress.json
 Current content:
 $CURRENT_PROGRESS
 
@@ -81,8 +89,8 @@ YOUR INSTRUCTIONS:
 1. Analyze the 'completed_tasks' in the progress file.
 2. Compare with your PLAN.md to determine the next logical step.
 3. Execute the next step(s).
-4. CRITICAL: After completing a step, you MUST append it to the 'completed_tasks' list in $PROGRESS_FILE.
-5. If you have finished ALL tasks in your PLAN, you MUST update the 'status' field in $PROGRESS_FILE to 'completed'.
+4. CRITICAL: After completing a step, you MUST append it to the 'completed_tasks' list in progress.json.
+5. If you have finished ALL tasks in your PLAN, you MUST update the 'status' field in progress.json to 'completed'.
 
 Please proceed with your work.
 "
@@ -91,14 +99,32 @@ Please proceed with your work.
     # We cd into the worktree so the agent works in the correct context
     (
         cd "$WORKTREE_PATH" || exit
+        
+        # Initialize progress file in the worktree if it doesn't exist (or copy from master if we want persistence across runs, 
+        # but here we want it in the branch. We'll initialize it with what we know from master/previous runs)
+        echo "$CURRENT_PROGRESS" > "progress.json"
+
         echo "   ▶️  Agent $AGENT_NAME running..."
         # Invoke opencode with the prompt
-        "$CODER_BIN" run "$FINAL_PROMPT" >> "$LOG_FILE" 2>&1
+        "$CODER_BIN" run "$FINAL_PROMPT" >> "agent_execution.log" 2>&1
         
         if [ $? -eq 0 ]; then
             echo "   ✅ Agent $AGENT_NAME finished execution loop."
+            # Sync progress back to master/docs for persistence across script runs if needed, 
+            # OR just leave it in the branch. The requirement says "write their logs in their own branch".
+            # So we leave agent_execution.log in the worktree.
+            
+            # However, for the script to know if it's done on next run, we might need to sync progress.json back?
+            # The user said "Agents should write their logs in their own branch".
+            # But the orchestration script checks "$AGENT_DIR/progress.json" (which is in master/docs) to decide whether to skip.
+            # If we only write to the branch, the orchestration script won't see it next time unless we merge.
+            # But we merge at the end of the phase. So if the script crashes mid-phase, we lose progress info if we don't sync back.
+            # Let's assume we sync progress.json back to the docs folder for orchestration tracking, 
+            # but keep the heavy logs in the branch.
+            
+            cp "progress.json" "$AGENT_DIR/progress.json"
         else
-            echo "   ❌ Agent $AGENT_NAME failed (exit code $?). Check logs."
+            echo "   ❌ Agent $AGENT_NAME failed (exit code $?). Check logs in $WORKTREE_PATH/agent_execution.log."
         fi
     ) &
     
