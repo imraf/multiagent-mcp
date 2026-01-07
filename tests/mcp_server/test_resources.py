@@ -1,9 +1,11 @@
-import pytest
-from unittest.mock import Mock
 from decimal import Decimal
-from mcp_core.models import Invoice, InvoiceStatus, InvoiceItem, Customer
-from mcp_server.invoice_resources import InvoiceResourceProvider
+from unittest.mock import Mock
+
+import pytest
+
+from mcp_core.models import Customer, Invoice, InvoiceItem, InvoiceStatus
 from mcp_customer.resources import CustomerResourceProvider
+from mcp_server.invoice_resources import InvoiceResourceProvider
 
 
 @pytest.fixture

@@ -1,7 +1,7 @@
 import uuid
-from typing import List, Optional
 from decimal import Decimal
-from .models import Invoice, InvoiceStatus, InvoiceItem
+
+from .models import Invoice, InvoiceItem, InvoiceStatus
 from .repository import Repository
 
 
@@ -10,7 +10,7 @@ class InvoiceService:
         self.repository = repository
 
     def create_draft(
-        self, customer_id: str, items: List[InvoiceItem], tax_rate: Decimal = Decimal("0.0")
+        self, customer_id: str, items: list[InvoiceItem], tax_rate: Decimal = Decimal("0.0")
     ) -> Invoice:
         """
         Creates a new invoice in DRAFT status.
@@ -28,10 +28,10 @@ class InvoiceService:
         )
         return self.repository.save(invoice)
 
-    def get_invoice(self, invoice_id: str) -> Optional[Invoice]:
+    def get_invoice(self, invoice_id: str) -> Invoice | None:
         return self.repository.get(invoice_id)
 
-    def list_invoices(self) -> List[Invoice]:
+    def list_invoices(self) -> list[Invoice]:
         return self.repository.list()
 
     def update_draft(self, invoice: Invoice) -> Invoice:
@@ -73,8 +73,7 @@ class InvoiceService:
             if inv.invoice_number and inv.invoice_number.startswith("INV-"):
                 try:
                     num_part = int(inv.invoice_number.split("-")[1])
-                    if num_part > max_num:
-                        max_num = num_part
+                    max_num = max(max_num, num_part)
                 except (ValueError, IndexError):
                     continue
 

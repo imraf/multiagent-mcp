@@ -1,19 +1,20 @@
-import pytest
 from decimal import Decimal
-from typing import Dict, Any, Optional, List
-from mcp_core.models import Invoice, InvoiceStatus, InvoiceItem
+
+import pytest
+
 from mcp_core.invoice_service import InvoiceService
+from mcp_core.models import Invoice, InvoiceItem, InvoiceStatus
 from mcp_core.repository import Repository
 
 
 class InMemoryRepository(Repository[Invoice]):
     def __init__(self):
-        self.data: Dict[str, Invoice] = {}
+        self.data: dict[str, Invoice] = {}
 
-    def get(self, id: str) -> Optional[Invoice]:
+    def get(self, id: str) -> Invoice | None:
         return self.data.get(id)
 
-    def list(self) -> List[Invoice]:
+    def list(self) -> list[Invoice]:
         return list(self.data.values())
 
     def save(self, entity: Invoice) -> Invoice:

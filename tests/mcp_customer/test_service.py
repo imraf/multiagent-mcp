@@ -1,5 +1,7 @@
-import pytest
 from unittest.mock import Mock
+
+import pytest
+
 from mcp_core.models import Customer
 from mcp_customer.service import CustomerService
 

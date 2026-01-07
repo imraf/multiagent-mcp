@@ -26,6 +26,7 @@ def test_logging_configuration(capsys):
     assert log_entry["level"] == "info"
     assert "timestamp" in log_entry
 
+
 def test_file_logging():
     """Test that logs are written to file with rotation."""
     with tempfile.TemporaryDirectory() as tmpdir:
@@ -41,6 +42,7 @@ def test_file_logging():
         log_entry = json.loads(content.strip())
         assert log_entry["event"] == "file log test"
         assert log_entry["service"] == "file-test"
+
 
 def test_log_level_filtering(capsys):
     """Test that logs respect the configured level."""

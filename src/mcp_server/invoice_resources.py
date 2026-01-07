@@ -1,7 +1,6 @@
-from typing import List, Optional
-from mcp_core.resource import ResourceProvider, Resource
 from mcp_core.invoice_service import InvoiceService
 from mcp_core.models import Invoice
+from mcp_core.resource import Resource, ResourceProvider
 
 
 class InvoiceResourceProvider(ResourceProvider):
@@ -14,13 +13,13 @@ class InvoiceResourceProvider(ResourceProvider):
     def __init__(self, invoice_service: InvoiceService):
         self.invoice_service = invoice_service
 
-    def get_resource(self, uri: str) -> Optional[Resource]:
+    def get_resource(self, uri: str) -> Resource | None:
         if not uri.startswith("invoice://"):
             return None
 
         # Parse URI: invoice://{id}/pdf
         parts = uri.replace("invoice://", "").split("/")
-        if len(parts) != 2 or parts[1] != "pdf":
+        if len(parts) != 2 or parts[1] != "pdf":  # noqa: PLR2004
             return None
 
         invoice_id = parts[0]
@@ -31,7 +30,7 @@ class InvoiceResourceProvider(ResourceProvider):
 
         return self._create_pdf_resource(invoice, uri)
 
-    def list_resources(self) -> List[Resource]:
+    def list_resources(self) -> list[Resource]:
         # For dynamic resources, we might return a list of all invoices
         # or just a template explanation. Here we list all available invoices as resources.
         resources = []
@@ -70,4 +69,5 @@ TOTAL: {invoice.total_amount}
             description="Virtual PDF representation of the invoice",
             mime_type="text/plain",  # Using text/plain for this 'virtual' PDF as per instructions
             text=content,
+            blob=None,
         )

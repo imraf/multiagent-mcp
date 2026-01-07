@@ -1,4 +1,6 @@
-from typing import Any, Callable, Dict, Optional, Type
+from collections.abc import Callable
+from typing import Any
+
 from pydantic import BaseModel
 
 
@@ -9,5 +11,5 @@ class Tool(BaseModel):
 
     name: str
     description: str
-    input_schema: Dict[str, Any]
+    input_schema: dict[str, Any]
     handler: Callable[..., Any]

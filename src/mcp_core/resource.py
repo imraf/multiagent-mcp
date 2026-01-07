@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List, Optional
+
 from pydantic import BaseModel, Field
 
 
@@ -11,10 +11,10 @@ class Resource(BaseModel):
 
     uri: str = Field(..., description="Unique URI for the resource")
     name: str = Field(..., description="Human-readable name")
-    description: Optional[str] = Field(None, description="Description of the resource")
-    mime_type: Optional[str] = Field(None, description="MIME type of the content")
-    text: Optional[str] = Field(None, description="Text content of the resource")
-    blob: Optional[str] = Field(None, description="Base64 encoded blob content")
+    description: str | None = Field(None, description="Description of the resource")
+    mime_type: str | None = Field(None, description="MIME type of the content")
+    text: str | None = Field(None, description="Text content of the resource")
+    blob: str | None = Field(None, description="Base64 encoded blob content")
 
 
 class ResourceProvider(ABC):
@@ -25,7 +25,7 @@ class ResourceProvider(ABC):
     """
 
     @abstractmethod
-    def get_resource(self, uri: str) -> Optional[Resource]:
+    def get_resource(self, uri: str) -> Resource | None:
         """
         Retrieve a resource by its URI.
         Returns None if the URI is not handled by this provider or not found.
@@ -33,7 +33,7 @@ class ResourceProvider(ABC):
         pass
 
     @abstractmethod
-    def list_resources(self) -> List[Resource]:
+    def list_resources(self) -> list[Resource]:
         """
         List all resources available from this provider.
         Note: For dynamic resources (like those based on DB IDs),

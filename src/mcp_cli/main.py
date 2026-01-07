@@ -1,8 +1,8 @@
 import typer
 from rich.console import Console
 from rich.table import Table
-from typing import Optional
-from mcp_client.client import InvoicingClient, InvoiceStatus
+
+from mcp_client.client import InvoiceStatus, InvoicingClient
 
 app = typer.Typer(help="MCP Invoice CLI")
 console = Console()
@@ -10,7 +10,7 @@ client = InvoicingClient()
 
 
 @app.command()
-def new(customer_id: str, description: str, quantity: int, price: float):
+def new(customer_id: str, description: str, quantity: int, price: float) -> None:
     """
     Create a new invoice.
     """
@@ -32,7 +32,7 @@ def new(customer_id: str, description: str, quantity: int, price: float):
 
 
 @app.command()
-def list(status: Optional[str] = None):
+def list(status: str | None = None) -> None:
     """
     List invoices, optionally filtered by status.
     """
@@ -65,8 +65,8 @@ def list(status: Optional[str] = None):
 
 @app.command()
 def customer_add(
-    name: str, email: str, vat_id: Optional[str] = None, address: Optional[str] = None
-):
+    name: str, email: str, vat_id: str | None = None, address: str | None = None
+) -> None:
     """
     Add a new customer.
     """

@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Any
 
 import yaml
 from pydantic import Field
@@ -10,13 +11,14 @@ class LogConfig(BaseSettings):
     format: str = Field(default="json", description="Logging format: json or text")
     file_path: str | None = Field(default=None, description="Path to log file")
 
+
 class AppConfig(BaseSettings):
     environment: str = Field(
-        default="development", 
-        description="Environment: development, production, test"
+        default="development", description="Environment: development, production, test"
     )
     debug: bool = Field(default=False, description="Debug mode")
     service_name: str = Field(default="mcp-agent", description="Name of the service")
+
 
 class Config(BaseSettings):
     app: AppConfig = Field(default_factory=AppConfig)
@@ -32,12 +34,12 @@ class Config(BaseSettings):
     @classmethod
     def settings_customise_sources(
         cls,
-        settings_cls,
-        init_settings,
-        env_settings,
-        dotenv_settings,
-        file_secret_settings,
-    ):
+        settings_cls: type[BaseSettings],
+        init_settings: Any,
+        env_settings: Any,
+        dotenv_settings: Any,
+        file_secret_settings: Any,
+    ) -> tuple[Any, ...]:
         return (
             env_settings,
             init_settings,

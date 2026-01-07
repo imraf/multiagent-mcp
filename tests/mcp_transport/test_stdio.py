@@ -1,13 +1,14 @@
-import asyncio
 import json
-import pytest
+from typing import Any
 from unittest.mock import MagicMock, patch
+
+import pytest
 
 from mcp_transport.stdio import StdioTransport
 
 
 @pytest.mark.asyncio
-async def test_stdio_transport_send():
+async def test_stdio_transport_send() -> None:
     transport = StdioTransport()
     message = {"jsonrpc": "2.0", "method": "test", "params": {}}
 
@@ -21,11 +22,11 @@ async def test_stdio_transport_send():
 
 
 @pytest.mark.asyncio
-async def test_stdio_transport_receive():
+async def test_stdio_transport_receive() -> None:
     transport = StdioTransport()
     mock_handler = MagicMock()
 
-    async def handler(msg):
+    async def handler(msg: Any) -> None:
         mock_handler(msg)
 
     transport.set_handler(handler)
@@ -37,3 +38,22 @@ async def test_stdio_transport_receive():
     await transport._handle_line(input_line)
 
     mock_handler.assert_called_once_with(input_message)
+
+
+@pytest.mark.asyncio
+async def test_stdio_transport_close() -> None:
+    transport = StdioTransport()
+    await transport.close()
+    # No assertion needed, just checking it doesn't crash
+
+
+@pytest.mark.asyncio
+async def test_stdio_transport_invalid_json() -> None:
+    transport = StdioTransport()
+    mock_handler = MagicMock()
+    transport.set_handler(mock_handler)
+
+    # Should not crash
+    await transport._handle_line(b"invalid json\n")
+
+    mock_handler.assert_not_called()

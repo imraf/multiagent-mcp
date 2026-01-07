@@ -8,6 +8,7 @@ def test_config_defaults():
     assert config.app.debug is False
     assert config.logging.level == "INFO"
 
+
 def test_config_env_vars(monkeypatch):
     """Test environment variable overrides."""
     monkeypatch.setenv("MCP_APP__ENVIRONMENT", "production")
@@ -18,6 +19,7 @@ def test_config_env_vars(monkeypatch):
     assert config.app.environment == "production"
     assert config.app.debug is True
     assert config.logging.level == "DEBUG"
+
 
 def test_config_yaml_loading(tmp_path):
     """Test loading from YAML file."""
@@ -37,6 +39,7 @@ def test_config_yaml_loading(tmp_path):
     assert config.logging.level == "WARNING"
     # defaults preserved
     assert config.app.debug is False
+
 
 def test_config_hierarchy(tmp_path, monkeypatch):
     """Test Env Vars > YAML > Defaults hierarchy."""

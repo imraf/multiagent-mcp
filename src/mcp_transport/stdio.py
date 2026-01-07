@@ -1,7 +1,8 @@
 import asyncio
 import json
 import sys
-from typing import Any, Callable, Awaitable, Optional
+from collections.abc import Awaitable, Callable
+from typing import Any
 
 from .base import Transport
 
@@ -10,19 +11,19 @@ class StdioTransport(Transport):
     """Standard Input/Output transport implementation."""
 
     def __init__(self) -> None:
-        self._handler: Optional[Callable[[Any], Awaitable[None]]] = None
-        self._loop: Optional[asyncio.AbstractEventLoop] = None
+        self._handler: Callable[[Any], Awaitable[None]] | None = None
+        self._loop: asyncio.AbstractEventLoop | None = None
 
     async def start(self) -> None:
         """Start reading from stdin."""
         self._loop = asyncio.get_running_loop()
         try:
+            loop = asyncio.get_running_loop()
             reader = asyncio.StreamReader()
             protocol = asyncio.StreamReaderProtocol(reader)
-            await self._loop.connect_read_pipe(lambda: protocol, sys.stdin)
-
+            await loop.connect_read_pipe(lambda: protocol, sys.stdin)
             # Start a background task to read lines
-            asyncio.create_task(self._read_loop(reader))
+            self._read_task = asyncio.create_task(self._read_loop(reader))
         except RuntimeError:
             # Handle case where loop is not running or stdin is not compatible
             pass
@@ -65,4 +66,4 @@ class StdioTransport(Transport):
             pass
         except Exception as e:
             # Log unexpected errors
-            pass
+            sys.stderr.write(f"Unexpected error in StdioTransport: {e}\n")

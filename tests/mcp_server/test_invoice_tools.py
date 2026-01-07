@@ -1,17 +1,16 @@
 import sys
 from unittest.mock import MagicMock
 
-# Mock mcp module before importing mcp_server.tools
+# Mock FastMCP before importing tools
 mcp_mock = MagicMock()
-sys.modules["mcp"] = mcp_mock
-sys.modules["mcp.server"] = mcp_mock
 sys.modules["mcp.server.fastmcp"] = mcp_mock
 
-import pytest
-import json
-from decimal import Decimal
-from mcp_server.tools import register_invoice_tools, invoice_service, invoice_repo
-from mcp_core.models import Invoice, InvoiceStatus, InvoiceItem
+import json  # noqa: E402
+from decimal import Decimal  # noqa: E402
+
+import pytest  # noqa: E402
+
+from mcp_server.tools import register_invoice_tools  # noqa: E402
 
 
 # Mock FastMCP
@@ -99,3 +98,38 @@ def test_deliver_invoice_tool(mcp):
     # Deliver
     result = mcp.tools["deliver_invoice"](invoice_id=draft["id"], method="email")
     assert "delivered via email" in result
+
+
+def test_list_invoices_tool(mcp):
+    register_invoice_tools(mcp)
+
+    # Create two drafts
+    items = [{"description": "Test", "quantity": 1, "unit_price": 10.0}]
+    mcp.tools["create_draft_invoice"](customer_id="c1", items=items)
+    mcp.tools["create_draft_invoice"](customer_id="c2", items=items)
+
+    # List all
+    list_json = mcp.tools["list_invoices"]()
+    invoices = json.loads(list_json)
+    assert len(invoices) >= 2  # noqa: PLR2004
+
+    # Filter (should be empty if we ask for paid)
+    list_paid_json = mcp.tools["list_invoices"](status="paid")
+    paid_invoices = json.loads(list_paid_json)
+    assert len(paid_invoices) == 0
+
+
+def test_get_invoice_error(mcp):
+    register_invoice_tools(mcp)
+
+    result = mcp.tools["get_invoice"](invoice_id="non-existent")
+    assert "Error" in result
+    assert "not found" in result
+
+
+def test_deliver_invoice_error(mcp):
+    register_invoice_tools(mcp)
+
+    result = mcp.tools["deliver_invoice"](invoice_id="non-existent")
+    assert "Error" in result
+    assert "not found" in result
