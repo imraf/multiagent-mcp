@@ -14,7 +14,7 @@ st.title("Invoice System Dashboard")
 DATA_PATH = Path("data/invoices.json")
 
 
-@st.cache_data  # type: ignore
+@st.cache_data  # type: ignore[untyped-decorator]
 def load_data() -> list[dict[str, Any]]:
     if not DATA_PATH.exists():
         return []
