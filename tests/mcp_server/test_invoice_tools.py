@@ -5,7 +5,7 @@ from unittest.mock import MagicMock
 mcp_mock = MagicMock()
 sys.modules["mcp.server.fastmcp"] = mcp_mock
 
-import json  # noqa: E402, I001
+import json  # noqa: E402
 from decimal import Decimal  # noqa: E402
 
 import pytest  # noqa: E402
