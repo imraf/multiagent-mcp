@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from typing import Any
 
 import pandas as pd
 import streamlit as st
@@ -13,8 +14,8 @@ st.title("Invoice System Dashboard")
 DATA_PATH = Path("data/invoices.json")
 
 
-@st.cache_data
-def load_data():
+@st.cache_data  # type: ignore
+def load_data() -> list[dict[str, Any]]:
     if not DATA_PATH.exists():
         return []
 
@@ -37,7 +38,7 @@ df = pd.json_normalize(invoices)
 
 
 # Calculate Totals
-def calculate_total(items):
+def calculate_total(items: list[dict[str, Any]]) -> float:
     total = 0.0
     for item in items:
         q = item.get("quantity", 0)

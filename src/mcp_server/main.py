@@ -1,9 +1,10 @@
 import importlib.metadata
 import logging
-from typing import Any
+from typing import Any, Iterable
 
 from mcp.server.fastmcp import FastMCP
 
+from mcp_core.prompt import PromptManager
 from mcp_server.customer_tools import register_customer_tools
 from mcp_server.invoice_resources import InvoiceResourceProvider
 from mcp_server.prompts import register_advanced_prompts
@@ -34,17 +35,18 @@ def get_invoice_pdf(invoice_id: str) -> str:
     Virtual PDF representation of an invoice.
     """
     res = resource_provider.get_resource(f"invoice://{invoice_id}/pdf")
-    if res:
+    if res and res.text:
         return res.text
     # FastMCP resources usually just return content.
     # Raising error might be appropriate if not found.
-    raise ValueError(f"Invoice {invoice_id} not found")
+    raise ValueError(f"Invoice {invoice_id} not found or empty")
 
 
 # --- 3. Register Prompts ---
 # Adapter to bridge mcp_core.prompt.PromptManager with FastMCP
-class FastMCPPromptManagerAdapter:
-    def __init__(self, mcp_instance: FastMCP):
+class FastMCPPromptManagerAdapter(PromptManager):
+    def __init__(self, mcp_instance: FastMCP) -> None:
+        super().__init__()
         self.mcp = mcp_instance
 
     def register_prompt(self, prompt: Any) -> None:
@@ -60,9 +62,13 @@ class FastMCPPromptManagerAdapter:
             # Validate arguments based on prompt.arguments?
             # mcp_core.prompt.Prompt.render should handle jinja rendering
             try:
-                return prompt.render(kwargs)
+                result = prompt.render_prompt(prompt.name, kwargs) if hasattr(prompt, "render_prompt") else prompt.template
+                return str(result)
             except Exception as e:
                 return f"Error rendering prompt: {e}"
+            
+        # Also register in local storage if needed by super class, though likely not used here
+        super().register_prompt(prompt)
 
 
 adapter = FastMCPPromptManagerAdapter(mcp)
@@ -76,17 +82,14 @@ def load_plugins(mcp_instance: FastMCP) -> None:
     Each plugin should expose a function that accepts the FastMCP instance.
     """
     group = "mcp_invoice.plugins"
+    plugins: Iterable[Any] = []
     try:
         # Python 3.10+
         if hasattr(importlib.metadata, "entry_points"):
-            eps = importlib.metadata.entry_points()
-            if hasattr(eps, "select"):
-                plugins = eps.select(group=group)
-            else:
-                # Python < 3.10 fallback or different behavior
-                plugins = eps.get(group, [])
+             # For Python 3.10+ and modern importlib.metadata
+             plugins = importlib.metadata.entry_points(group=group)
         else:
-            plugins = []
+             plugins = []
     except Exception:
         plugins = []
 

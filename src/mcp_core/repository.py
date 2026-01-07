@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Generic, TypeVar
 
-from .models import BaseModel
+from pydantic import BaseModel
 
 T = TypeVar("T", bound=BaseModel)
 

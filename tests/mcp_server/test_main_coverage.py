@@ -21,7 +21,7 @@ sys.modules["mcp.server.fastmcp"] = mcp_module_mock
 from mcp_server.main import get_invoice_pdf, load_plugins  # noqa: E402
 
 
-def test_load_plugins():
+def test_load_plugins() -> None:
     mcp = MagicMock()
     with patch("importlib.metadata.entry_points") as mock_eps:
         # Mock entry points behavior
@@ -29,17 +29,15 @@ def test_load_plugins():
         mock_ep.name = "test_plugin"
         mock_ep.load.return_value = MagicMock()
 
-        # Structure for Python 3.10+ select()
-        mock_eps_result = MagicMock()
-        mock_eps_result.select.return_value = [mock_ep]
-        mock_eps.return_value = mock_eps_result
+        # Update: We now call entry_points(group=...) which returns iterable directly
+        mock_eps.return_value = [mock_ep]
 
         load_plugins(mcp)
 
         mock_ep.load.return_value.assert_called_once_with(mcp)
 
 
-def test_get_invoice_pdf():
+def test_get_invoice_pdf() -> None:
     # Helper to test the resource function logic
     # We need to mock resource_provider in main.py or just the underlying service call
     with patch("mcp_server.main.resource_provider") as mock_provider:

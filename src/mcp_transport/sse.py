@@ -1,5 +1,5 @@
 import asyncio
-from collections.abc import Awaitable, Callable
+from collections.abc import AsyncIterator, Awaitable, Callable
 from typing import Any
 
 from fastapi import FastAPI, Request
@@ -39,7 +39,7 @@ class SseTransport(Transport):
         async def sse_endpoint(request: Request) -> EventSourceResponse:
             return EventSourceResponse(self._event_generator(request))
 
-    async def _event_generator(self, request: Request):
+    async def _event_generator(self, request: Request) -> AsyncIterator[dict[str, Any]]:
         while True:
             if await request.is_disconnected():
                 break

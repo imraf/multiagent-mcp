@@ -1,4 +1,5 @@
 from decimal import Decimal
+from typing import Any
 from unittest.mock import MagicMock, patch
 
 from mcp_client.client import InvoicingClient
@@ -6,7 +7,7 @@ from mcp_client.client import InvoicingClient
 
 @patch("mcp_client.client.InvoicingClient._listen_sse")  # Prevent thread start
 @patch("mcp_client.client.InvoicingClient._call_tool")
-def test_create_invoice_mock(mock_call_tool, mock_listen):
+def test_create_invoice_mock(mock_call_tool: MagicMock, mock_listen: MagicMock) -> None:
     # Mock return value from _call_tool (simulating decoded JSON)
     mock_call_tool.return_value = {
         "id": "draft_id",
@@ -31,7 +32,7 @@ def test_create_invoice_mock(mock_call_tool, mock_listen):
 
 @patch("mcp_client.client.InvoicingClient._listen_sse")
 @patch("mcp_client.client.InvoicingClient._call_tool")
-def test_register_customer_mock(mock_call_tool, mock_listen):
+def test_register_customer_mock(mock_call_tool: MagicMock, mock_listen: MagicMock) -> None:
     mock_call_tool.return_value = {
         "id": "cust_123",
         "name": "Acme Corp",
@@ -47,7 +48,7 @@ def test_register_customer_mock(mock_call_tool, mock_listen):
     assert customer.email == "contact@acme.com"
 
 
-def test_handle_message():
+def test_handle_message() -> None:
     """Test that _handle_message updates pending requests correctly."""
     with patch("mcp_client.client.InvoicingClient._listen_sse"):
         client = InvoicingClient()
@@ -62,12 +63,14 @@ def test_handle_message():
         client._handle_message(message)
 
         # Verify
-        assert client._pending_requests[req_id]["result"] == message
+        req = client._pending_requests.get(req_id)
+        assert req is not None
+        assert req["result"] == message
         event.set.assert_called_once()
 
 
 @patch("httpx.Client")
-def test_call_tool_success(mock_httpx_cls):
+def test_call_tool_success(mock_httpx_cls: MagicMock) -> None:
     """Test _call_tool success path."""
     mock_client_instance = mock_httpx_cls.return_value
 
@@ -86,19 +89,20 @@ def test_call_tool_success(mock_httpx_cls):
         client.client = mock_client_instance  # Ensure we use the mock
 
         # We need to hook into when `post` is called to simulate the response arriving.
-        def side_effect(*args, **kwargs):
+        def side_effect(*args: Any, **kwargs: Any) -> Any:
             # args[0] is the url path '/messages'
             # json payload has the ID
             payload = kwargs.get("json")
-            req_id = payload["id"]
+            if payload:
+                req_id = payload["id"]
 
-            # Simulate response arrival
-            response_message = {
-                "jsonrpc": "2.0",
-                "id": req_id,
-                "result": {"content": [{"type": "text", "text": '{"foo": "bar"}'}]},
-            }
-            client._handle_message(response_message)
+                # Simulate response arrival
+                response_message = {
+                    "jsonrpc": "2.0",
+                    "id": req_id,
+                    "result": {"content": [{"type": "text", "text": '{"foo": "bar"}'}]},
+                }
+                client._handle_message(response_message)
             return mock_response
 
         mock_client_instance.post.side_effect = side_effect
@@ -108,7 +112,7 @@ def test_call_tool_success(mock_httpx_cls):
 
 
 @patch("httpx.Client")
-def test_call_tool_timeout(mock_httpx_cls):
+def test_call_tool_timeout(mock_httpx_cls: MagicMock) -> None:
     """Test _call_tool timeout."""
     mock_client_instance = mock_httpx_cls.return_value
     mock_client_instance.post.return_value.raise_for_status.return_value = None
@@ -127,7 +131,7 @@ def test_call_tool_timeout(mock_httpx_cls):
 
 
 @patch("httpx.Client")
-def test_call_tool_api_error(mock_httpx_cls):
+def test_call_tool_api_error(mock_httpx_cls: MagicMock) -> None:
     """Test _call_tool when API returns error."""
     mock_client_instance = mock_httpx_cls.return_value
 
@@ -135,11 +139,12 @@ def test_call_tool_api_error(mock_httpx_cls):
         client = InvoicingClient()
         client.client = mock_client_instance
 
-        def side_effect(*args, **kwargs):
+        def side_effect(*args: Any, **kwargs: Any) -> Any:
             payload = kwargs.get("json")
-            req_id = payload["id"]
-            response_message = {"jsonrpc": "2.0", "id": req_id, "error": "Something went wrong"}
-            client._handle_message(response_message)
+            if payload:
+                req_id = payload["id"]
+                response_message = {"jsonrpc": "2.0", "id": req_id, "error": "Something went wrong"}
+                client._handle_message(response_message)
             return MagicMock()  # response object
 
         mock_client_instance.post.side_effect = side_effect

@@ -4,26 +4,29 @@ from unittest.mock import patch
 
 from mcp_core.batch_processor import BatchInvoiceProcessor, _process_single_invoice_data
 from mcp_core.invoice_service import InvoiceService
-from mcp_core.models import Invoice, InvoiceStatus
+from mcp_core.models import Invoice, InvoiceItem, InvoiceStatus
 
 
 class MockInvoiceService(InvoiceService):
-    def __init__(self):
-        self.created = []
+    def __init__(self) -> None:
+        self.created: list[Invoice] = []
 
-    def create_draft(self, customer_id, items, tax_rate):
+    def create_draft(
+        self, customer_id: str, items: list[InvoiceItem], tax_rate: Decimal = Decimal("0.0")
+    ) -> Invoice:
         invoice = Invoice(
             id=f"inv_{len(self.created)}",
             customer_id=customer_id,
             items=items,
             tax_rate=tax_rate,
             status=InvoiceStatus.DRAFT,
+            invoice_number=None,
         )
         self.created.append(invoice)
         return invoice
 
 
-def test_process_single_invoice_data():
+def test_process_single_invoice_data() -> None:
     # Test valid data
     data = {
         "customer_id": "c1",
@@ -42,7 +45,7 @@ def test_process_single_invoice_data():
     assert "error" in result_bad
 
 
-def test_batch_processing():
+def test_batch_processing() -> None:
     service = MockInvoiceService()
     processor = BatchInvoiceProcessor(service, processes=2)
 

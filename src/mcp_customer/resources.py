@@ -1,4 +1,7 @@
+from decimal import Decimal
+
 from mcp_core.invoice_service import InvoiceService
+from mcp_core.models import Customer
 from mcp_core.resource import Resource, ResourceProvider
 from mcp_customer.service import CustomerService
 
@@ -39,7 +42,7 @@ class CustomerResourceProvider(ResourceProvider):
             resources.append(self._create_ledger_resource(customer, uri))
         return resources
 
-    def _create_ledger_resource(self, customer, uri: str) -> Resource:
+    def _create_ledger_resource(self, customer: Customer, uri: str) -> Resource:
         """Helper to create the ledger resource from a customer."""
 
         # Get all invoices for this customer to build the ledger
@@ -55,7 +58,7 @@ Email: {customer.email}
 
 TRANSACTIONS:
 """
-        total_billed = 0
+        total_billed = Decimal("0.00")
         for inv in customer_invoices:
             status = inv.status.value.upper()
             date_str = inv.id  # Mocking date with ID for now as per models
@@ -77,4 +80,5 @@ Total Billed: ${total_billed}
             description="Transaction history for the customer",
             mime_type="text/plain",
             text=content,
+            blob=None,
         )

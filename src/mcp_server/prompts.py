@@ -1,7 +1,7 @@
 from mcp_core.prompt import Prompt, PromptArgument, PromptManager
 
 
-def register_advanced_prompts(prompt_manager: PromptManager):
+def register_advanced_prompts(prompt_manager: PromptManager) -> None:
     """
     Registers advanced primitives prompts.
     """
@@ -11,10 +11,10 @@ def register_advanced_prompts(prompt_manager: PromptManager):
         name="compose_dunning_email",
         description="Generates a polite but firm payment reminder email for an overdue invoice.",
         arguments=[
-            PromptArgument(name="customer_name", description="Name of the customer"),
-            PromptArgument(name="invoice_number", description="Invoice number (e.g. INV-1001)"),
-            PromptArgument(name="amount_due", description="Total amount due"),
-            PromptArgument(name="due_date", description="Date the invoice was due"),
+            PromptArgument(name="customer_name", description="Name of the customer", required=True),
+            PromptArgument(name="invoice_number", description="Invoice number (e.g. INV-1001)", required=True),
+            PromptArgument(name="amount_due", description="Total amount due", required=True),
+            PromptArgument(name="due_date", description="Date the invoice was due", required=True),
             PromptArgument(
                 name="tone", description="Tone of the email (polite, firm, urgent)", required=False
             ),
@@ -49,13 +49,14 @@ The Finance Team
         name="financial_summary",
         description="Generates a summary of outstanding debt for a customer.",
         arguments=[
-            PromptArgument(name="customer_name", description="Name of the customer"),
-            PromptArgument(name="total_outstanding", description="Total amount outstanding"),
+            PromptArgument(name="customer_name", description="Name of the customer", required=True),
+            PromptArgument(name="total_outstanding", description="Total amount outstanding", required=True),
             PromptArgument(
                 name="overdue_invoices",
                 description=(
                     "List of overdue invoices (dicts with 'number', 'amount', 'days_overdue')"
                 ),
+                required=True,
             ),
         ],
         template="""

@@ -69,4 +69,5 @@ TOTAL: {invoice.total_amount}
             description="Virtual PDF representation of the invoice",
             mime_type="text/plain",  # Using text/plain for this 'virtual' PDF as per instructions
             text=content,
+            blob=None,
         )

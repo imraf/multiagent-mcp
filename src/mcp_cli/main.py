@@ -10,7 +10,7 @@ client = InvoicingClient()
 
 
 @app.command()
-def new(customer_id: str, description: str, quantity: int, price: float):
+def new(customer_id: str, description: str, quantity: int, price: float) -> None:
     """
     Create a new invoice.
     """
@@ -32,7 +32,7 @@ def new(customer_id: str, description: str, quantity: int, price: float):
 
 
 @app.command()
-def list(status: str | None = None):
+def list(status: str | None = None) -> None:
     """
     List invoices, optionally filtered by status.
     """
@@ -64,7 +64,7 @@ def list(status: str | None = None):
 
 
 @app.command()
-def customer_add(name: str, email: str, vat_id: str | None = None, address: str | None = None):
+def customer_add(name: str, email: str, vat_id: str | None = None, address: str | None = None) -> None:
     """
     Add a new customer.
     """

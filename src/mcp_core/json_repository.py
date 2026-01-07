@@ -21,7 +21,7 @@ class JsonFileRepository(Repository[T]):
         self.file_path = Path(file_path)
         self._ensure_file_exists()
 
-    def _ensure_file_exists(self):
+    def _ensure_file_exists(self) -> None:
         if not self.file_path.exists():
             self.file_path.parent.mkdir(parents=True, exist_ok=True)
             with open(self.file_path, "w") as f:
@@ -36,7 +36,7 @@ class JsonFileRepository(Repository[T]):
             finally:
                 fcntl.flock(f, fcntl.LOCK_UN)
 
-    def _write_data(self, data: dict[str, Any]):
+    def _write_data(self, data: dict[str, Any]) -> None:
         with open(self.file_path, "w") as f:
             fcntl.flock(f, fcntl.LOCK_EX)
             try:
@@ -49,13 +49,13 @@ class JsonFileRepository(Repository[T]):
         item_data = data.get(id)
         if item_data:
             # We trust that item_data matches the model structure
-            return self.model_class.model_validate(item_data)  # type: ignore
+            return self.model_class.model_validate(item_data)
         return None
 
     def list(self) -> list[T]:
         data = self._read_data()
         # We trust that item matches the model structure
-        return [self.model_class.model_validate(item) for item in data.values()]  # type: ignore
+        return [self.model_class.model_validate(item) for item in data.values()]
 
     def save(self, entity: T) -> T:
         # Use a read-modify-write cycle with file locking to ensure atomicity

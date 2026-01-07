@@ -31,7 +31,7 @@ class PromptManager:
     Manages prompt registration and rendering using Jinja2.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._prompts: dict[str, Prompt] = {}
         self._jinja_env = jinja2.Environment(
             loader=jinja2.BaseLoader(),
@@ -40,7 +40,7 @@ class PromptManager:
             ),  # Default safe, though mostly text
         )
 
-    def register_prompt(self, prompt: Prompt):
+    def register_prompt(self, prompt: Prompt) -> None:
         """Register a new prompt."""
         self._prompts[prompt.name] = prompt
 
