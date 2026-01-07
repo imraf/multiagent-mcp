@@ -1,5 +1,6 @@
 import pytest
-from mcp_core.prompt import Prompt, PromptManager, PromptArgument
+
+from mcp_core.prompt import Prompt, PromptArgument, PromptManager
 
 
 @pytest.fixture

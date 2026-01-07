@@ -1,7 +1,8 @@
 import asyncio
 import json
 import sys
-from typing import Any, Callable, Awaitable, Optional
+from collections.abc import Awaitable, Callable
+from typing import Any
 
 from .base import Transport
 
@@ -10,8 +11,8 @@ class StdioTransport(Transport):
     """Standard Input/Output transport implementation."""
 
     def __init__(self) -> None:
-        self._handler: Optional[Callable[[Any], Awaitable[None]]] = None
-        self._loop: Optional[asyncio.AbstractEventLoop] = None
+        self._handler: Callable[[Any], Awaitable[None]] | None = None
+        self._loop: asyncio.AbstractEventLoop | None = None
 
     async def start(self) -> None:
         """Start reading from stdin."""
@@ -63,6 +64,6 @@ class StdioTransport(Transport):
         except json.JSONDecodeError:
             # Log error or ignore malformed JSON
             pass
-        except Exception as e:
+        except Exception:
             # Log unexpected errors
             pass

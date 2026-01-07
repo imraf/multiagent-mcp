@@ -1,23 +1,27 @@
-from typing import List, Dict, Any, Optional
-from mcp.server.fastmcp import FastMCP
-from mcp_core.invoice_service import InvoiceService
-from mcp_core.models import Invoice, InvoiceItem, InvoiceStatus
-from mcp_core.json_repository import JsonFileRepository
 from decimal import Decimal
+from typing import Any
+
+from mcp.server.fastmcp import FastMCP
+
+from mcp_core.batch_processor import BatchInvoiceProcessor
+from mcp_core.invoice_service import InvoiceService
+from mcp_core.json_repository import JsonFileRepository
+from mcp_core.models import Invoice, InvoiceItem
 
 # Initialize services (could be dependency injected or configured externally)
 invoice_repo = JsonFileRepository(Invoice, "data/invoices.json")
 invoice_service = InvoiceService(invoice_repo)
+batch_processor = BatchInvoiceProcessor(invoice_service)
 
 
-def register_invoice_tools(mcp: FastMCP):
+def register_invoice_tools(mcp: FastMCP) -> None:
     """
     Registers invoice-related tools with the MCP server.
     """
 
     @mcp.tool()
     def create_draft_invoice(
-        customer_id: str, items: List[Dict[str, Any]], tax_rate: float = 0.0
+        customer_id: str, items: list[dict[str, Any]], tax_rate: float = 0.0
     ) -> str:
         """
         Creates a new draft invoice.
@@ -43,7 +47,24 @@ def register_invoice_tools(mcp: FastMCP):
         invoice = invoice_service.create_draft(
             customer_id=customer_id, items=invoice_items, tax_rate=Decimal(str(tax_rate))
         )
-        return invoice.model_dump_json()
+        return str(invoice.model_dump_json())
+
+    @mcp.tool()
+    def batch_create_invoices(batch_data: list[dict[str, Any]]) -> str:
+        """
+        Creates multiple draft invoices in batch.
+
+        Args:
+            batch_data: List of invoice data dictionaries. Each dict should have:
+                        - customer_id (str)
+                        - items (list of dicts with description, quantity, unit_price)
+                        - tax_rate (float, optional)
+
+        Returns:
+            JSON string list of created invoices.
+        """
+        invoices = batch_processor.process_batch(batch_data)
+        return str("[" + ",".join(inv.model_dump_json() for inv in invoices) + "]")
 
     @mcp.tool()
     def finalize_invoice(invoice_id: str) -> str:
@@ -58,7 +79,7 @@ def register_invoice_tools(mcp: FastMCP):
             JSON string representation of the finalized invoice.
         """
         invoice = invoice_service.finalize_invoice(invoice_id)
-        return invoice.model_dump_json()
+        return str(invoice.model_dump_json())
 
     @mcp.tool()
     def get_invoice(invoice_id: str) -> str:
@@ -73,8 +94,26 @@ def register_invoice_tools(mcp: FastMCP):
         """
         invoice = invoice_service.get_invoice(invoice_id)
         if invoice:
-            return invoice.model_dump_json()
+            return str(invoice.model_dump_json())
         return f"Error: Invoice {invoice_id} not found"
+
+    @mcp.tool()
+    def list_invoices(status: str | None = None) -> str:
+        """
+        List all invoices, optionally filtered by status.
+
+        Args:
+            status: Optional status to filter by (draft, sent, paid, cancelled).
+
+        Returns:
+            JSON string representation of the list of invoices.
+        """
+        invoices = invoice_service.list_invoices()
+        if status:
+            invoices = [inv for inv in invoices if inv.status.value == status]
+
+        # Serialize list of models
+        return str("[" + ",".join(inv.model_dump_json() for inv in invoices) + "]")
 
     @mcp.tool()
     def deliver_invoice(invoice_id: str, method: str = "email") -> str:
@@ -111,4 +150,4 @@ def register_invoice_tools(mcp: FastMCP):
         # Logic to append reason to internal notes/audit trail could be added here
         # For now, just change status.
         invoice = invoice_service.cancel_invoice(invoice_id)
-        return invoice.model_dump_json()
+        return str(invoice.model_dump_json())

@@ -1,5 +1,5 @@
-from typing import List, Optional
 from uuid import uuid4
+
 from mcp_core.models import Customer
 from mcp_core.repository import Repository
 
@@ -9,27 +9,27 @@ class CustomerService:
         self.repository = repository
 
     def add(
-        self, name: str, email: str, vat_id: Optional[str] = None, address: Optional[str] = None
+        self, name: str, email: str, vat_id: str | None = None, address: str | None = None
     ) -> Customer:
         """Add a new customer."""
         customer = Customer(id=str(uuid4()), name=name, email=email, vat_id=vat_id, address=address)
         return self.repository.save(customer)
 
-    def get(self, customer_id: str) -> Optional[Customer]:
+    def get(self, customer_id: str) -> Customer | None:
         """Get a customer by ID."""
         return self.repository.get(customer_id)
 
-    def list(self) -> List[Customer]:
+    def list(self) -> list[Customer]:
         """List all customers."""
         return self.repository.list()
 
     def update(
         self,
         customer_id: str,
-        name: Optional[str] = None,
-        email: Optional[str] = None,
-        vat_id: Optional[str] = None,
-        address: Optional[str] = None,
+        name: str | None = None,
+        email: str | None = None,
+        vat_id: str | None = None,
+        address: str | None = None,
     ) -> Customer:
         """Update an existing customer."""
         customer = self.repository.get(customer_id)

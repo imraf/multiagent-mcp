@@ -1,7 +1,7 @@
-from typing import List, Optional
-from mcp_core.resource import ResourceProvider, Resource
-from mcp_customer.service import CustomerService
+
 from mcp_core.invoice_service import InvoiceService
+from mcp_core.resource import Resource, ResourceProvider
+from mcp_customer.service import CustomerService
 
 
 class CustomerResourceProvider(ResourceProvider):
@@ -15,7 +15,7 @@ class CustomerResourceProvider(ResourceProvider):
         self.customer_service = customer_service
         self.invoice_service = invoice_service
 
-    def get_resource(self, uri: str) -> Optional[Resource]:
+    def get_resource(self, uri: str) -> Resource | None:
         if not uri.startswith("customer://"):
             return None
 
@@ -32,7 +32,7 @@ class CustomerResourceProvider(ResourceProvider):
 
         return self._create_ledger_resource(customer, uri)
 
-    def list_resources(self) -> List[Resource]:
+    def list_resources(self) -> list[Resource]:
         resources = []
         customers = self.customer_service.list()
         for customer in customers:

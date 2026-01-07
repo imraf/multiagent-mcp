@@ -1,5 +1,7 @@
-from typing import Optional, Dict, Any, Type
+from typing import Any
+
 from pydantic import BaseModel, Field
+
 from mcp_core.tool import Tool
 from mcp_customer.service import CustomerService
 
@@ -7,14 +9,14 @@ from mcp_customer.service import CustomerService
 class RegisterCustomerInput(BaseModel):
     name: str = Field(..., description="Full name or company name")
     email: str = Field(..., description="Contact email address")
-    vat_id: Optional[str] = Field(None, description="VAT ID if applicable")
-    address: Optional[str] = Field(None, description="Billing address")
+    vat_id: str | None = Field(None, description="VAT ID if applicable")
+    address: str | None = Field(None, description="Billing address")
 
 
 def create_register_customer_tool(service: CustomerService) -> Tool:
     def handler(
-        name: str, email: str, vat_id: Optional[str] = None, address: Optional[str] = None
-    ) -> Dict[str, Any]:
+        name: str, email: str, vat_id: str | None = None, address: str | None = None
+    ) -> dict[str, Any]:
         customer = service.add(name=name, email=email, vat_id=vat_id, address=address)
         return customer.model_dump(mode="json")
 
@@ -28,20 +30,20 @@ def create_register_customer_tool(service: CustomerService) -> Tool:
 
 class UpdateCustomerInput(BaseModel):
     customer_id: str = Field(..., description="Unique identifier of the customer to update")
-    name: Optional[str] = Field(None, description="New full name or company name")
-    email: Optional[str] = Field(None, description="New contact email address")
-    vat_id: Optional[str] = Field(None, description="New VAT ID")
-    address: Optional[str] = Field(None, description="New billing address")
+    name: str | None = Field(None, description="New full name or company name")
+    email: str | None = Field(None, description="New contact email address")
+    vat_id: str | None = Field(None, description="New VAT ID")
+    address: str | None = Field(None, description="New billing address")
 
 
 def create_update_customer_tool(service: CustomerService) -> Tool:
     def handler(
         customer_id: str,
-        name: Optional[str] = None,
-        email: Optional[str] = None,
-        vat_id: Optional[str] = None,
-        address: Optional[str] = None,
-    ) -> Dict[str, Any]:
+        name: str | None = None,
+        email: str | None = None,
+        vat_id: str | None = None,
+        address: str | None = None,
+    ) -> dict[str, Any]:
         customer = service.update(
             customer_id=customer_id, name=name, email=email, vat_id=vat_id, address=address
         )

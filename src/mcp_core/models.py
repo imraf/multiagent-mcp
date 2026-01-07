@@ -1,21 +1,21 @@
+import re
 from decimal import Decimal
 from enum import Enum
-from typing import List, Optional
+
 from pydantic import BaseModel, EmailStr, Field, field_validator
-import re
 
 
 class Customer(BaseModel):
     id: str = Field(..., description="Unique identifier for the customer")
     name: str = Field(..., min_length=1, description="Full name or company name")
     email: EmailStr = Field(..., description="Contact email address")
-    vat_id: Optional[str] = Field(None, description="VAT ID if applicable")
-    address: Optional[str] = Field(None, description="Billing address")
+    vat_id: str | None = Field(None, description="VAT ID if applicable")
+    address: str | None = Field(None, description="Billing address")
     version: int = Field(default=0, description="Version number for optimistic locking")
 
     @field_validator("vat_id")
     @classmethod
-    def validate_vat_id(cls, v: Optional[str]) -> Optional[str]:
+    def validate_vat_id(cls, v: str | None) -> str | None:
         if v is None:
             return v
         # Basic alphanumeric check for VAT ID, can be expanded for specific country codes
@@ -45,11 +45,11 @@ class InvoiceItem(BaseModel):
 
 class Invoice(BaseModel):
     id: str = Field(..., description="Unique invoice identifier")
-    invoice_number: Optional[str] = Field(
+    invoice_number: str | None = Field(
         None, description="Official sequential invoice number (assigned when finalized)"
     )
     customer_id: str = Field(..., description="ID of the customer this invoice belongs to")
-    items: List[InvoiceItem] = Field(default_factory=list, description="List of invoice items")
+    items: list[InvoiceItem] = Field(default_factory=list, description="List of invoice items")
     status: InvoiceStatus = Field(
         default=InvoiceStatus.DRAFT, description="Current status of the invoice"
     )

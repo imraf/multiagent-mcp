@@ -1,0 +1,1262 @@
+{
+  "64ba4b2d-21da-495e-8850-e4cc20b797f3": {
+    "id": "64ba4b2d-21da-495e-8850-e4cc20b797f3",
+    "invoice_number": null,
+    "customer_id": "cust-1",
+    "items": [
+      {
+        "description": "Test Item",
+        "quantity": 1,
+        "unit_price": "100.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.2",
+    "version": 1
+  },
+  "148a1acb-30b3-44f4-b495-c6c533cec1d2": {
+    "id": "148a1acb-30b3-44f4-b495-c6c533cec1d2",
+    "invoice_number": "INV-0001",
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "sent",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "41471c45-c802-4b54-a82c-287f990c9470": {
+    "id": "41471c45-c802-4b54-a82c-287f990c9470",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "cancelled",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "1dff900a-f98f-4b4c-a7c8-439e25442f1d": {
+    "id": "1dff900a-f98f-4b4c-a7c8-439e25442f1d",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "0b248aa9-d4ac-42d9-8c87-7ccf5070d268": {
+    "id": "0b248aa9-d4ac-42d9-8c87-7ccf5070d268",
+    "invoice_number": null,
+    "customer_id": "cust-1",
+    "items": [
+      {
+        "description": "Test Item",
+        "quantity": 1,
+        "unit_price": "100.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.2",
+    "version": 1
+  },
+  "8cec8149-0e1b-4f9a-aa31-5e197878aa55": {
+    "id": "8cec8149-0e1b-4f9a-aa31-5e197878aa55",
+    "invoice_number": "INV-0002",
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "sent",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "b0524859-e7b1-4691-b91a-8c05c8559fd1": {
+    "id": "b0524859-e7b1-4691-b91a-8c05c8559fd1",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "cancelled",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "81ba7753-de51-4fcb-a5e0-90530e6c5581": {
+    "id": "81ba7753-de51-4fcb-a5e0-90530e6c5581",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "27634d92-9258-4b05-82f9-5bf1f6fa8b4c": {
+    "id": "27634d92-9258-4b05-82f9-5bf1f6fa8b4c",
+    "invoice_number": null,
+    "customer_id": "cust-1",
+    "items": [
+      {
+        "description": "Test Item",
+        "quantity": 1,
+        "unit_price": "100.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.2",
+    "version": 1
+  },
+  "d34a3f03-2bcb-41ae-81aa-4cdabf6a9b6d": {
+    "id": "d34a3f03-2bcb-41ae-81aa-4cdabf6a9b6d",
+    "invoice_number": "INV-0003",
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "sent",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "85654c95-d39e-4f94-acba-9574019d6563": {
+    "id": "85654c95-d39e-4f94-acba-9574019d6563",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "cancelled",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "29879cbb-83e3-4c50-b50f-3ee1f70da169": {
+    "id": "29879cbb-83e3-4c50-b50f-3ee1f70da169",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "5e6952e2-feee-4fe2-a46b-3e256904b2a0": {
+    "id": "5e6952e2-feee-4fe2-a46b-3e256904b2a0",
+    "invoice_number": null,
+    "customer_id": "cust-1",
+    "items": [
+      {
+        "description": "Test Item",
+        "quantity": 1,
+        "unit_price": "100.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.2",
+    "version": 1
+  },
+  "ba68ee1a-da39-4243-a656-da18d89ba5b7": {
+    "id": "ba68ee1a-da39-4243-a656-da18d89ba5b7",
+    "invoice_number": "INV-0004",
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "sent",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "54a209cf-eb71-429c-a274-3461649c3689": {
+    "id": "54a209cf-eb71-429c-a274-3461649c3689",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "cancelled",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "1754d191-0072-4dbe-bc5a-70e8ea74295c": {
+    "id": "1754d191-0072-4dbe-bc5a-70e8ea74295c",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "f9032f31-f3d3-4899-8254-b67ab16cf367": {
+    "id": "f9032f31-f3d3-4899-8254-b67ab16cf367",
+    "invoice_number": null,
+    "customer_id": "cust-1",
+    "items": [
+      {
+        "description": "Test Item",
+        "quantity": 1,
+        "unit_price": "100.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.2",
+    "version": 1
+  },
+  "1e91ad0e-ba84-4128-a4f5-fee935c413f3": {
+    "id": "1e91ad0e-ba84-4128-a4f5-fee935c413f3",
+    "invoice_number": "INV-0005",
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "sent",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "42b27448-c270-41be-87d5-9d33088fff13": {
+    "id": "42b27448-c270-41be-87d5-9d33088fff13",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "cancelled",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "c6bb6bbb-abc9-42ad-bbb1-08994a2d095c": {
+    "id": "c6bb6bbb-abc9-42ad-bbb1-08994a2d095c",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "8f7d0326-bfa9-4288-bedd-c80165e8d7eb": {
+    "id": "8f7d0326-bfa9-4288-bedd-c80165e8d7eb",
+    "invoice_number": null,
+    "customer_id": "cust-1",
+    "items": [
+      {
+        "description": "Test Item",
+        "quantity": 1,
+        "unit_price": "100.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.2",
+    "version": 1
+  },
+  "6b2ce139-a6a5-42bc-8050-db33876b2e10": {
+    "id": "6b2ce139-a6a5-42bc-8050-db33876b2e10",
+    "invoice_number": "INV-0006",
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "sent",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "4052c5c6-9382-4c24-8962-9b0a4d1dbf33": {
+    "id": "4052c5c6-9382-4c24-8962-9b0a4d1dbf33",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "cancelled",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "ab76c358-3bf2-4bc6-91ae-74238b224fe3": {
+    "id": "ab76c358-3bf2-4bc6-91ae-74238b224fe3",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "fd013d7e-f577-402f-a801-ddf970d4d0e0": {
+    "id": "fd013d7e-f577-402f-a801-ddf970d4d0e0",
+    "invoice_number": null,
+    "customer_id": "cust-1",
+    "items": [
+      {
+        "description": "Test Item",
+        "quantity": 1,
+        "unit_price": "100.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.2",
+    "version": 1
+  },
+  "b4977b43-6a67-4ac6-a252-1955c15088dd": {
+    "id": "b4977b43-6a67-4ac6-a252-1955c15088dd",
+    "invoice_number": "INV-0007",
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "sent",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "d142d652-3d89-4616-b718-b42cb3f5b018": {
+    "id": "d142d652-3d89-4616-b718-b42cb3f5b018",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "cancelled",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "0f660f8d-03ef-45e0-9ec4-6ac62ee823ad": {
+    "id": "0f660f8d-03ef-45e0-9ec4-6ac62ee823ad",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "7b8385b6-742e-4e07-aa11-e3b1af910306": {
+    "id": "7b8385b6-742e-4e07-aa11-e3b1af910306",
+    "invoice_number": null,
+    "customer_id": "cust-1",
+    "items": [
+      {
+        "description": "Test Item",
+        "quantity": 1,
+        "unit_price": "100.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.2",
+    "version": 1
+  },
+  "38db8d75-3cbc-4d1a-a8d6-30143034f583": {
+    "id": "38db8d75-3cbc-4d1a-a8d6-30143034f583",
+    "invoice_number": "INV-0008",
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "sent",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "64932b81-3834-4a59-be6a-868b8483f0af": {
+    "id": "64932b81-3834-4a59-be6a-868b8483f0af",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "cancelled",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "475f1245-60e7-4fae-8b3f-f663ad581792": {
+    "id": "475f1245-60e7-4fae-8b3f-f663ad581792",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "1057c212-8d1b-4b7a-b97e-90127a43c15b": {
+    "id": "1057c212-8d1b-4b7a-b97e-90127a43c15b",
+    "invoice_number": null,
+    "customer_id": "cust-1",
+    "items": [
+      {
+        "description": "Test Item",
+        "quantity": 1,
+        "unit_price": "100.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.2",
+    "version": 1
+  },
+  "3b4421b1-090e-49a7-9fbf-0f9690d28279": {
+    "id": "3b4421b1-090e-49a7-9fbf-0f9690d28279",
+    "invoice_number": "INV-0009",
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "sent",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "9fe9e79e-31f3-44ef-a1be-e7714b530a20": {
+    "id": "9fe9e79e-31f3-44ef-a1be-e7714b530a20",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "cancelled",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "7b7a0c55-843c-413b-8039-a9e9ca88b661": {
+    "id": "7b7a0c55-843c-413b-8039-a9e9ca88b661",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "29a21e5c-512b-4b2a-97fe-2046e63d1a59": {
+    "id": "29a21e5c-512b-4b2a-97fe-2046e63d1a59",
+    "invoice_number": null,
+    "customer_id": "cust-1",
+    "items": [
+      {
+        "description": "Test Item",
+        "quantity": 1,
+        "unit_price": "100.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.2",
+    "version": 1
+  },
+  "4574e31c-0610-480c-8966-cdb6748556a2": {
+    "id": "4574e31c-0610-480c-8966-cdb6748556a2",
+    "invoice_number": "INV-0010",
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "sent",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "f13ad6f8-3f1c-4cb0-9a6e-7ce10d8a654d": {
+    "id": "f13ad6f8-3f1c-4cb0-9a6e-7ce10d8a654d",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "cancelled",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "632d88b9-84c8-4b51-94fa-f05b74f1ae21": {
+    "id": "632d88b9-84c8-4b51-94fa-f05b74f1ae21",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "c70b05b7-8d8e-4af4-9606-397b762e1726": {
+    "id": "c70b05b7-8d8e-4af4-9606-397b762e1726",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "68a04b78-c11c-4cab-84ea-fcc7b9375f1b": {
+    "id": "68a04b78-c11c-4cab-84ea-fcc7b9375f1b",
+    "invoice_number": null,
+    "customer_id": "c2",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "3582e435-59ff-4636-8fdb-5f5a360f30ff": {
+    "id": "3582e435-59ff-4636-8fdb-5f5a360f30ff",
+    "invoice_number": null,
+    "customer_id": "cust-1",
+    "items": [
+      {
+        "description": "Test Item",
+        "quantity": 1,
+        "unit_price": "100.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.2",
+    "version": 1
+  },
+  "5fd602aa-897d-4cd0-8728-487f0ed7771a": {
+    "id": "5fd602aa-897d-4cd0-8728-487f0ed7771a",
+    "invoice_number": "INV-0011",
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "sent",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "b65b164a-0211-4655-b561-b7884b207427": {
+    "id": "b65b164a-0211-4655-b561-b7884b207427",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "cancelled",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "286eb2f2-f5cc-484b-b997-52e911109d1c": {
+    "id": "286eb2f2-f5cc-484b-b997-52e911109d1c",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "f08ddbb0-59a4-4969-9c6d-a7d31ca05eb5": {
+    "id": "f08ddbb0-59a4-4969-9c6d-a7d31ca05eb5",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "a57129e7-c0e9-4847-a532-ca51e946c8e3": {
+    "id": "a57129e7-c0e9-4847-a532-ca51e946c8e3",
+    "invoice_number": null,
+    "customer_id": "c2",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "e288d743-d6e1-498d-af1b-697e1fd94c1b": {
+    "id": "e288d743-d6e1-498d-af1b-697e1fd94c1b",
+    "invoice_number": null,
+    "customer_id": "cust-1",
+    "items": [
+      {
+        "description": "Test Item",
+        "quantity": 1,
+        "unit_price": "100.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.2",
+    "version": 1
+  },
+  "c1bf53f0-21b1-4698-90bc-a5ca0f8267b9": {
+    "id": "c1bf53f0-21b1-4698-90bc-a5ca0f8267b9",
+    "invoice_number": "INV-0012",
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "sent",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "1d3164ec-c80a-4337-af35-9f66c75f8184": {
+    "id": "1d3164ec-c80a-4337-af35-9f66c75f8184",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "cancelled",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "75c9fe6b-1578-4b86-8670-a86ac5acfb86": {
+    "id": "75c9fe6b-1578-4b86-8670-a86ac5acfb86",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "60db607d-65e1-4344-8c22-a96a351d9652": {
+    "id": "60db607d-65e1-4344-8c22-a96a351d9652",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "47a35cb4-32b2-4a06-8f9d-00b4c6c4e008": {
+    "id": "47a35cb4-32b2-4a06-8f9d-00b4c6c4e008",
+    "invoice_number": null,
+    "customer_id": "c2",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "8f27e832-36c5-4ec0-8c8c-29f458731c2a": {
+    "id": "8f27e832-36c5-4ec0-8c8c-29f458731c2a",
+    "invoice_number": null,
+    "customer_id": "cust-1",
+    "items": [
+      {
+        "description": "Test Item",
+        "quantity": 1,
+        "unit_price": "100.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.2",
+    "version": 1
+  },
+  "0c2af489-6a10-4690-852a-062b347a1147": {
+    "id": "0c2af489-6a10-4690-852a-062b347a1147",
+    "invoice_number": "INV-0013",
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "sent",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "528e5237-cbfe-463b-98c6-103b6e08d09c": {
+    "id": "528e5237-cbfe-463b-98c6-103b6e08d09c",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "cancelled",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "6ae1611f-344a-4b9f-904e-3decebf86d38": {
+    "id": "6ae1611f-344a-4b9f-904e-3decebf86d38",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "28d5304a-928f-4d26-b778-f9053dcb8a3f": {
+    "id": "28d5304a-928f-4d26-b778-f9053dcb8a3f",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "4a88421f-6361-4617-aa8a-ddb36683eac5": {
+    "id": "4a88421f-6361-4617-aa8a-ddb36683eac5",
+    "invoice_number": null,
+    "customer_id": "c2",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "7e127798-79e5-4718-8feb-d89f8e5e2f5a": {
+    "id": "7e127798-79e5-4718-8feb-d89f8e5e2f5a",
+    "invoice_number": null,
+    "customer_id": "cust-1",
+    "items": [
+      {
+        "description": "Test Item",
+        "quantity": 1,
+        "unit_price": "100.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.2",
+    "version": 1
+  },
+  "26547267-d4ee-4ad9-ac7d-7647f7b8f019": {
+    "id": "26547267-d4ee-4ad9-ac7d-7647f7b8f019",
+    "invoice_number": "INV-0014",
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "sent",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "0763a0e2-860a-4cc9-9117-5cf9f093d2d0": {
+    "id": "0763a0e2-860a-4cc9-9117-5cf9f093d2d0",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "cancelled",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "3b8c444d-d9c8-40db-b9a0-0c64beb7e641": {
+    "id": "3b8c444d-d9c8-40db-b9a0-0c64beb7e641",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "aa0ec83d-58a2-4db0-a0ef-37760af9d8dc": {
+    "id": "aa0ec83d-58a2-4db0-a0ef-37760af9d8dc",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "a0bc86b5-e477-4127-8a74-becfa1889078": {
+    "id": "a0bc86b5-e477-4127-8a74-becfa1889078",
+    "invoice_number": null,
+    "customer_id": "c2",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "5eddea1d-c8ac-4001-beb7-3a3864cd11c7": {
+    "id": "5eddea1d-c8ac-4001-beb7-3a3864cd11c7",
+    "invoice_number": null,
+    "customer_id": "cust-1",
+    "items": [
+      {
+        "description": "Test Item",
+        "quantity": 1,
+        "unit_price": "100.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.2",
+    "version": 1
+  },
+  "e7e4661d-2423-4eb4-9b0c-95c25c6b35e1": {
+    "id": "e7e4661d-2423-4eb4-9b0c-95c25c6b35e1",
+    "invoice_number": "INV-0015",
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "sent",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "71083473-8f2c-47d8-b371-5057277800e0": {
+    "id": "71083473-8f2c-47d8-b371-5057277800e0",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "cancelled",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "00aeb716-5b17-4d3a-8acd-ee50b66f5afb": {
+    "id": "00aeb716-5b17-4d3a-8acd-ee50b66f5afb",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "fef304b7-977e-4bdf-8fd6-f2297af24ba2": {
+    "id": "fef304b7-977e-4bdf-8fd6-f2297af24ba2",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "efa21b73-ccb2-4b59-a64c-f2ef8cd88766": {
+    "id": "efa21b73-ccb2-4b59-a64c-f2ef8cd88766",
+    "invoice_number": null,
+    "customer_id": "c2",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "05108684-31cf-4533-b451-f5fa1ca63c25": {
+    "id": "05108684-31cf-4533-b451-f5fa1ca63c25",
+    "invoice_number": null,
+    "customer_id": "cust-1",
+    "items": [
+      {
+        "description": "Test Item",
+        "quantity": 1,
+        "unit_price": "100.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.2",
+    "version": 1
+  },
+  "4cf012d9-a018-4a57-b8ad-284fa4585e12": {
+    "id": "4cf012d9-a018-4a57-b8ad-284fa4585e12",
+    "invoice_number": "INV-0016",
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "sent",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "d0f9432e-f576-4ab7-86eb-6941e22f1fa8": {
+    "id": "d0f9432e-f576-4ab7-86eb-6941e22f1fa8",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "cancelled",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "fcbdc5b5-94ed-4106-8177-23ab04783949": {
+    "id": "fcbdc5b5-94ed-4106-8177-23ab04783949",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "12d31629-f246-47e6-9cf2-854bc1b00909": {
+    "id": "12d31629-f246-47e6-9cf2-854bc1b00909",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "646f1922-5e61-454d-ad7e-6f5124d667b3": {
+    "id": "646f1922-5e61-454d-ad7e-6f5124d667b3",
+    "invoice_number": null,
+    "customer_id": "c2",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "0e0d3381-4a8e-4a3e-9922-1524af87c8c9": {
+    "id": "0e0d3381-4a8e-4a3e-9922-1524af87c8c9",
+    "invoice_number": null,
+    "customer_id": "cust-1",
+    "items": [
+      {
+        "description": "Test Item",
+        "quantity": 1,
+        "unit_price": "100.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.2",
+    "version": 1
+  },
+  "97457191-8e19-44c0-9a4a-febec7e4d3e4": {
+    "id": "97457191-8e19-44c0-9a4a-febec7e4d3e4",
+    "invoice_number": "INV-0017",
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "sent",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "b17a3826-2ef5-45fd-a710-3cfb7b90f370": {
+    "id": "b17a3826-2ef5-45fd-a710-3cfb7b90f370",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "cancelled",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "cb1084bb-caf9-487b-afc4-890cfc7a2734": {
+    "id": "cb1084bb-caf9-487b-afc4-890cfc7a2734",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "12a5eed0-5dfc-4274-8b3e-f9ca94876960": {
+    "id": "12a5eed0-5dfc-4274-8b3e-f9ca94876960",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "7154169b-cd73-4c2f-a7a4-54befc6ecc76": {
+    "id": "7154169b-cd73-4c2f-a7a4-54befc6ecc76",
+    "invoice_number": null,
+    "customer_id": "c2",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  }
+}

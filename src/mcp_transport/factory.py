@@ -1,9 +1,8 @@
 import os
-from typing import Type
 
 from .base import Transport
-from .stdio import StdioTransport
 from .sse import SseTransport
+from .stdio import StdioTransport
 
 
 def get_transport() -> Transport:

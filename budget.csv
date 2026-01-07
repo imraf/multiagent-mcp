@@ -1,0 +1,7 @@
+Category,Item,Estimated Monthly Cost (USD),Notes
+Infrastructure,VPS (t3.micro equivalent),10.00,Hosting the MCP server
+LLM API,Token Usage (GPT-4o),5.00,"Buffer for ~1000 ops/mo"
+Storage,S3 Backups,0.50,Daily backups
+Development,CI/CD Minutes (GitHub Actions),0.00,"Free tier sufficient"
+Contingency,Unexpected Overage,5.00,Safety margin
+**Total**,**Monthly Total**,**20.50**,

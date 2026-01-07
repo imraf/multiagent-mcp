@@ -12,7 +12,7 @@ class LogConfig(BaseSettings):
 
 class AppConfig(BaseSettings):
     environment: str = Field(
-        default="development", 
+        default="development",
         description="Environment: development, production, test"
     )
     debug: bool = Field(default=False, description="Debug mode")

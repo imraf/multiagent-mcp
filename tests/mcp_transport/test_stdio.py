@@ -1,7 +1,7 @@
-import asyncio
 import json
-import pytest
 from unittest.mock import MagicMock, patch
+
+import pytest
 
 from mcp_transport.stdio import StdioTransport
 
@@ -37,3 +37,20 @@ async def test_stdio_transport_receive():
     await transport._handle_line(input_line)
 
     mock_handler.assert_called_once_with(input_message)
+
+@pytest.mark.asyncio
+async def test_stdio_transport_close():
+    transport = StdioTransport()
+    await transport.close()
+    # No assertion needed, just checking it doesn't crash
+
+@pytest.mark.asyncio
+async def test_stdio_transport_invalid_json():
+    transport = StdioTransport()
+    mock_handler = MagicMock()
+    transport.set_handler(mock_handler)
+
+    # Should not crash
+    await transport._handle_line(b"invalid json\n")
+
+    mock_handler.assert_not_called()

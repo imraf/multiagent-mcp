@@ -168,6 +168,52 @@ ruff format .
 
 ---
 
-## 📄 License
+## Visuals
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+### Command Line Interface (CLI)
+
+The CLI provides a rich, table-based interface for managing invoices and customers.
+
+**Example: Listing Invoices**
+```text
+           Invoices (All)            
+┏━━━━━━━┳━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┓
+┃ ID    ┃ Customer ┃ Status ┃ Total ┃
+┡━━━━━━━╇━━━━━━━━━━╇━━━━━━━━╇━━━━━━━┩
+│ inv_1 │ cust_1   │ draft  │ $0.00 │
+└───────┴──────────┴────────┴───────┘
+```
+
+### Interactive Dashboard
+
+A Streamlit dashboard is available for visualizing invoicing metrics.
+
+Run it with:
+```bash
+streamlit run dashboard.py
+```
+
+It displays:
+*   Total Revenue and Invoice Counts
+*   Status distribution charts
+*   Data tables for deep diving into invoice details
+
+---
+
+## ❓ Troubleshooting
+
+### Common Issues
+
+**1. Server fails to start with "Module not found"**
+Ensure you have installed the package in editable mode:
+```bash
+pip install -e .
+```
+
+**2. CLI cannot connect to server**
+- Ensure the server is running (`python src/mcp_server/main.py` or `uvicorn src.mcp_server.main:app`).
+- Check if the port 8000 is occupied.
+- Verify `MCP_TRANSPORT` environment variable matches your setup.
+
+**3. "Optimistic locking failure"**
+This occurs when multiple processes try to update the same invoice simultaneously. The system uses optimistic concurrency control; simply retry the operation.

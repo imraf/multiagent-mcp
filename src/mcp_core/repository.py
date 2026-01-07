@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
-from typing import Generic, TypeVar, List, Optional
+from typing import Generic, TypeVar
+
 from .models import BaseModel
 
 T = TypeVar("T", bound=BaseModel)
@@ -11,12 +12,12 @@ class Repository(ABC, Generic[T]):
     """
 
     @abstractmethod
-    def get(self, id: str) -> Optional[T]:
+    def get(self, id: str) -> T | None:
         """Retrieve an entity by its ID."""
         pass
 
     @abstractmethod
-    def list(self) -> List[T]:
+    def list(self) -> list[T]:
         """List all entities."""
         pass
 

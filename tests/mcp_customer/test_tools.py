@@ -1,8 +1,10 @@
-import pytest
 from unittest.mock import Mock
+
+import pytest
+
+from mcp_core.models import Customer
 from mcp_customer.service import CustomerService
 from mcp_customer.tools import create_register_customer_tool, create_update_customer_tool
-from mcp_core.models import Customer
 
 
 @pytest.fixture

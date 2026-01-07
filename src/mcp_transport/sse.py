@@ -1,5 +1,6 @@
 import asyncio
-from typing import Any, Callable, Awaitable, Optional
+from collections.abc import Awaitable, Callable
+from typing import Any
 
 from fastapi import FastAPI, Request
 from sse_starlette.sse import EventSourceResponse
@@ -14,9 +15,9 @@ class SseTransport(Transport):
     def __init__(self, host: str = "127.0.0.1", port: int = 8000) -> None:
         self.host = host
         self.port = port
-        self._handler: Optional[Callable[[Any], Awaitable[None]]] = None
+        self._handler: Callable[[Any], Awaitable[None]] | None = None
         self._app = FastAPI()
-        self._server: Optional[Server] = None
+        self._server: Server | None = None
         self._message_queue: asyncio.Queue[dict[str, Any]] = asyncio.Queue()
 
         self._setup_routes()
@@ -47,7 +48,7 @@ class SseTransport(Transport):
                 # Wait for message with timeout to allow checking connection status
                 message = await asyncio.wait_for(self._message_queue.get(), timeout=1.0)
                 yield {"data": message}
-            except asyncio.TimeoutError:
+            except TimeoutError:
                 # Send keepalive comment
                 yield {"comment": "keepalive"}
 
