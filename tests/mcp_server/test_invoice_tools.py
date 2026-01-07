@@ -13,8 +13,6 @@ import pytest  # noqa: E402
 from mcp_server.tools import register_invoice_tools  # noqa: E402
 
 
-
-
 # Mock FastMCP
 class MockFastMCP:
     def __init__(self):

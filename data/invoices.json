@@ -1438,5 +1438,95 @@
     "status": "draft",
     "tax_rate": "0.0",
     "version": 1
+  },
+  "69933172-29b5-434e-a7a5-d68c413f16d4": {
+    "id": "69933172-29b5-434e-a7a5-d68c413f16d4",
+    "invoice_number": null,
+    "customer_id": "cust-1",
+    "items": [
+      {
+        "description": "Test Item",
+        "quantity": 1,
+        "unit_price": "100.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.2",
+    "version": 1
+  },
+  "77d04918-c036-41a2-87e7-ee6bcc74e951": {
+    "id": "77d04918-c036-41a2-87e7-ee6bcc74e951",
+    "invoice_number": "INV-0020",
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "sent",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "46eb595e-04c4-4b1c-b4d3-1ffd91649fe7": {
+    "id": "46eb595e-04c4-4b1c-b4d3-1ffd91649fe7",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "cancelled",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "a83d96b5-3eea-4fff-adb5-3226c9bf9d8e": {
+    "id": "a83d96b5-3eea-4fff-adb5-3226c9bf9d8e",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "a3fd6878-024c-4b47-b2af-2f9cd4cbded9": {
+    "id": "a3fd6878-024c-4b47-b2af-2f9cd4cbded9",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "c5173ad8-78cb-4c09-8490-7ac89f7d8928": {
+    "id": "c5173ad8-78cb-4c09-8490-7ac89f7d8928",
+    "invoice_number": null,
+    "customer_id": "c2",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
   }
 }
