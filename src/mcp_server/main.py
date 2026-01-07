@@ -1,6 +1,7 @@
 import importlib.metadata
 import logging
-from typing import Any, Iterable
+from collections.abc import Iterable
+from typing import Any
 
 from mcp.server.fastmcp import FastMCP
 
@@ -66,7 +67,7 @@ class FastMCPPromptManagerAdapter(PromptManager):
                 return str(result)
             except Exception as e:
                 return f"Error rendering prompt: {e}"
-            
+
         # Also register in local storage if needed by super class, though likely not used here
         super().register_prompt(prompt)
 

@@ -8,7 +8,7 @@ import httpx
 
 from mcp_core.models import Customer, Invoice, InvoiceStatus
 
-__all__ = ["InvoicingClient", "Customer", "Invoice", "InvoiceStatus"]
+__all__ = ["Customer", "Invoice", "InvoiceStatus", "InvoicingClient"]
 
 
 class InvoicingClient:
