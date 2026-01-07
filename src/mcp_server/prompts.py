@@ -12,7 +12,9 @@ def register_advanced_prompts(prompt_manager: PromptManager) -> None:
         description="Generates a polite but firm payment reminder email for an overdue invoice.",
         arguments=[
             PromptArgument(name="customer_name", description="Name of the customer", required=True),
-            PromptArgument(name="invoice_number", description="Invoice number (e.g. INV-1001)", required=True),
+            PromptArgument(
+                name="invoice_number", description="Invoice number (e.g. INV-1001)", required=True
+            ),
             PromptArgument(name="amount_due", description="Total amount due", required=True),
             PromptArgument(name="due_date", description="Date the invoice was due", required=True),
             PromptArgument(
@@ -50,7 +52,9 @@ The Finance Team
         description="Generates a summary of outstanding debt for a customer.",
         arguments=[
             PromptArgument(name="customer_name", description="Name of the customer", required=True),
-            PromptArgument(name="total_outstanding", description="Total amount outstanding", required=True),
+            PromptArgument(
+                name="total_outstanding", description="Total amount outstanding", required=True
+            ),
             PromptArgument(
                 name="overdue_invoices",
                 description=(

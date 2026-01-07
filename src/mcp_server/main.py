@@ -63,7 +63,11 @@ class FastMCPPromptManagerAdapter(PromptManager):
             # Validate arguments based on prompt.arguments?
             # mcp_core.prompt.Prompt.render should handle jinja rendering
             try:
-                result = prompt.render_prompt(prompt.name, kwargs) if hasattr(prompt, "render_prompt") else prompt.template
+                result = (
+                    prompt.render_prompt(prompt.name, kwargs)
+                    if hasattr(prompt, "render_prompt")
+                    else prompt.template
+                )
                 return str(result)
             except Exception as e:
                 return f"Error rendering prompt: {e}"
@@ -87,10 +91,10 @@ def load_plugins(mcp_instance: FastMCP) -> None:
     try:
         # Python 3.10+
         if hasattr(importlib.metadata, "entry_points"):
-             # For Python 3.10+ and modern importlib.metadata
-             plugins = importlib.metadata.entry_points(group=group)
+            # For Python 3.10+ and modern importlib.metadata
+            plugins = importlib.metadata.entry_points(group=group)
         else:
-             plugins = []
+            plugins = []
     except Exception:
         plugins = []
 

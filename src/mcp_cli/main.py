@@ -64,7 +64,9 @@ def list(status: str | None = None) -> None:
 
 
 @app.command()
-def customer_add(name: str, email: str, vat_id: str | None = None, address: str | None = None) -> None:
+def customer_add(
+    name: str, email: str, vat_id: str | None = None, address: str | None = None
+) -> None:
     """
     Add a new customer.
     """
