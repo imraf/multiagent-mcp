@@ -1,4 +1,3 @@
-
 from mcp.server.fastmcp import FastMCP
 
 from mcp_core.json_repository import JsonFileRepository
@@ -31,7 +30,5 @@ def register_customer_tools(mcp: FastMCP) -> None:
         Returns:
             JSON string representation of the created customer.
         """
-        customer = customer_service.add(
-            name=name, email=email, vat_id=vat_id, address=address
-        )
+        customer = customer_service.add(name=name, email=email, vat_id=vat_id, address=address)
         return str(customer.model_dump_json())

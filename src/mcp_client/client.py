@@ -59,9 +59,9 @@ class InvoicingClient:
         # Depending on the server implementation, the ID might be an integer or string.
         # We try to match it as string.
         if req_id is not None:
-             req_id_str = str(req_id)
-             with self._lock:
-                 if req_id_str in self._pending_requests:
+            req_id_str = str(req_id)
+            with self._lock:
+                if req_id_str in self._pending_requests:
                     self._pending_requests[req_id_str]["result"] = message
                     self._pending_requests[req_id_str]["event"].set()
 
@@ -92,7 +92,8 @@ class InvoicingClient:
             # But technically cleaner to lock if we want to be purists,
             # however _pending_requests is modified by listener.
             # The dictionary entry itself is shared state.
-            # We already hold the reference to the entry (conceptually), but we should lock to read 'result'
+            # We already hold the reference to the entry (conceptually),
+            # but we should lock to read 'result'
             # if we want to be strictly correct, although event.wait acts as memory barrier.
             # But let's check keys again to be safe?
             # Actually, we popped it below.
@@ -112,17 +113,17 @@ class InvoicingClient:
         """Extract the actual return value from the MCP tool result structure."""
         # FastMCP / MCP SDK usually returns { "content": [ {"type": "text", "text": "..."} ] }
         if isinstance(result, dict) and "content" in result:
-             content = result["content"]
-             if isinstance(content, list) and len(content) > 0:
-                 text = content[0].get("text")
-                 # The tool might return a JSON string (Invoice) or just a string/dict
-                 # We try to parse it as JSON if it looks like it, otherwise return as is.
-                 try:
-                     if isinstance(text, str) and (text.startswith("{") or text.startswith("[")):
+            content = result["content"]
+            if isinstance(content, list) and len(content) > 0:
+                text = content[0].get("text")
+                # The tool might return a JSON string (Invoice) or just a string/dict
+                # We try to parse it as JSON if it looks like it, otherwise return as is.
+                try:
+                    if isinstance(text, str) and (text.startswith("{") or text.startswith("[")):
                         return json.loads(text)
-                     return text
-                 except (json.JSONDecodeError, TypeError):
-                     return text
+                    return text
+                except (json.JSONDecodeError, TypeError):
+                    return text
 
         # Fallback if structure is different
         return result
@@ -158,7 +159,9 @@ class InvoicingClient:
 
     def list_invoices(self, status: InvoiceStatus | None = None) -> list[Invoice]:
         try:
-            result_json = self._call_tool("list_invoices", {"status": status.value if status else None})
+            result_json = self._call_tool(
+                "list_invoices", {"status": status.value if status else None}
+            )
             return [Invoice.model_validate(item) for item in result_json]
         except RuntimeError:
             # If tool not found

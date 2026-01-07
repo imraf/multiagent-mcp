@@ -30,7 +30,8 @@ def test_prompt_rendering(prompt_manager):
     result = prompt_manager.render_prompt("greeting", {"name": "Alice", "place": "Wonderland"})
     assert result == "Hello Alice, welcome to Wonderland!"
 
-    # Render with missing optional arg (Jinja handles missing as empty/none typically, but logic depends on template)
+    # Render with missing optional arg
+    # (Jinja handles missing as empty/none typically, but logic depends on template)
     # Our simple template just prints blank for missing vars
     result = prompt_manager.render_prompt("greeting", {"name": "Bob"})
     assert "Hello Bob" in result

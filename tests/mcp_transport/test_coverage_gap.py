@@ -32,6 +32,7 @@ async def test_sse_event_generator():
         with pytest.raises(StopAsyncIteration):
             await anext(gen)
 
+
 @pytest.mark.asyncio
 async def test_sse_start_close():
     transport = SseTransport()
@@ -44,6 +45,7 @@ async def test_sse_start_close():
     await transport.close()
     assert transport._server.should_exit is True
 
+
 @pytest.mark.asyncio
 async def test_stdio_read_loop():
     transport = StdioTransport()
@@ -52,17 +54,20 @@ async def test_stdio_read_loop():
 
     # Mock reader
     reader = MagicMock()
-    reader.readline = AsyncMock(side_effect=[
-        b'{"jsonrpc": "2.0"}\n', # Valid
-        b'invalid json\n',       # Invalid JSON
-        b''                      # EOF
-    ])
+    reader.readline = AsyncMock(
+        side_effect=[
+            b'{"jsonrpc": "2.0"}\n',  # Valid
+            b"invalid json\n",  # Invalid JSON
+            b"",  # EOF
+        ]
+    )
 
     await transport._read_loop(reader)
 
     assert handler.call_count == 1
     args, _ = handler.call_args
     assert args[0] == {"jsonrpc": "2.0"}
+
 
 @pytest.mark.asyncio
 async def test_stdio_start():
@@ -75,6 +80,5 @@ async def test_stdio_start():
         mock_loop.connect_read_pipe = AsyncMock()
 
         with patch("sys.stdin"):
-             await transport.start()
-             mock_loop.connect_read_pipe.assert_called()
-
+            await transport.start()
+            mock_loop.connect_read_pipe.assert_called()

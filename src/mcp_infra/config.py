@@ -10,13 +10,14 @@ class LogConfig(BaseSettings):
     format: str = Field(default="json", description="Logging format: json or text")
     file_path: str | None = Field(default=None, description="Path to log file")
 
+
 class AppConfig(BaseSettings):
     environment: str = Field(
-        default="development",
-        description="Environment: development, production, test"
+        default="development", description="Environment: development, production, test"
     )
     debug: bool = Field(default=False, description="Debug mode")
     service_name: str = Field(default="mcp-agent", description="Name of the service")
+
 
 class Config(BaseSettings):
     app: AppConfig = Field(default_factory=AppConfig)

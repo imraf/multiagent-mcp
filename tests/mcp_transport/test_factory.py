@@ -15,11 +15,13 @@ def test_get_transport_default():
     transport = get_transport()
     assert isinstance(transport, StdioTransport)
 
+
 def test_get_transport_stdio():
     os.environ["MCP_TRANSPORT"] = "stdio"
     transport = get_transport()
     assert isinstance(transport, StdioTransport)
     del os.environ["MCP_TRANSPORT"]
+
 
 def test_get_transport_sse():
     os.environ["MCP_TRANSPORT"] = "sse"
@@ -29,11 +31,12 @@ def test_get_transport_sse():
     transport = get_transport()
     assert isinstance(transport, SseTransport)
     assert transport.host == "localhost"
-    assert transport.port == 9090
+    assert transport.port == 9090  # noqa: PLR2004
 
     del os.environ["MCP_TRANSPORT"]
     del os.environ["MCP_HOST"]
     del os.environ["MCP_PORT"]
+
 
 def test_get_transport_unknown():
     os.environ["MCP_TRANSPORT"] = "unknown_transport"

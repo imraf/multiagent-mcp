@@ -1,4 +1,3 @@
-
 import typer
 from rich.console import Console
 from rich.table import Table
@@ -65,9 +64,7 @@ def list(status: str | None = None):
 
 
 @app.command()
-def customer_add(
-    name: str, email: str, vat_id: str | None = None, address: str | None = None
-):
+def customer_add(name: str, email: str, vat_id: str | None = None, address: str | None = None):
     """
     Add a new customer.
     """

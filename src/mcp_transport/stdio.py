@@ -18,12 +18,12 @@ class StdioTransport(Transport):
         """Start reading from stdin."""
         self._loop = asyncio.get_running_loop()
         try:
+            loop = asyncio.get_running_loop()
             reader = asyncio.StreamReader()
             protocol = asyncio.StreamReaderProtocol(reader)
-            await self._loop.connect_read_pipe(lambda: protocol, sys.stdin)
-
+            await loop.connect_read_pipe(lambda: protocol, sys.stdin)
             # Start a background task to read lines
-            asyncio.create_task(self._read_loop(reader))
+            self._read_task = asyncio.create_task(self._read_loop(reader))
         except RuntimeError:
             # Handle case where loop is not running or stdin is not compatible
             pass

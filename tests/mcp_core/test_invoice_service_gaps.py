@@ -27,10 +27,12 @@ class InMemoryRepository(Repository[Invoice]):
             return True
         return False
 
+
 @pytest.fixture
 def invoice_service():
     repo = InMemoryRepository()
     return InvoiceService(repo)
+
 
 def test_update_draft(invoice_service):
     items = [InvoiceItem(description="Item", quantity=1, unit_price=Decimal("100"))]
@@ -54,13 +56,14 @@ def test_update_draft(invoice_service):
         invoice_service.update_draft(inv)
 
     # Fail if implicitly changing status
-    inv.status = InvoiceStatus.DRAFT # Reset
+    inv.status = InvoiceStatus.DRAFT  # Reset
     invoice_service.repository.save(inv)
 
     inv_modified = inv.model_copy()
     inv_modified.status = InvoiceStatus.SENT
     with pytest.raises(ValueError, match="Use specific transition methods"):
         invoice_service.update_draft(inv_modified)
+
 
 def test_mark_paid_errors(invoice_service):
     with pytest.raises(ValueError, match="not found"):
@@ -72,6 +75,7 @@ def test_mark_paid_errors(invoice_service):
     with pytest.raises(ValueError, match="must be in SENT state"):
         invoice_service.mark_paid(inv.id)
 
+
 def test_cancel_invoice(invoice_service):
     with pytest.raises(ValueError, match="not found"):
         invoice_service.cancel_invoice("fake")
@@ -82,12 +86,14 @@ def test_cancel_invoice(invoice_service):
     cancelled = invoice_service.cancel_invoice(inv.id)
     assert cancelled.status == InvoiceStatus.CANCELLED
 
+
 def test_list_invoices(invoice_service):
     items = [InvoiceItem(description="Item", quantity=1, unit_price=Decimal("100"))]
     invoice_service.create_draft("c1", items)
     invoice_service.create_draft("c2", items)
 
-    assert len(invoice_service.list_invoices()) == 2
+    assert len(invoice_service.list_invoices()) == 2  # noqa: PLR2004
+
 
 def test_get_invoice(invoice_service):
     assert invoice_service.get_invoice("fake") is None
@@ -95,6 +101,7 @@ def test_get_invoice(invoice_service):
     items = [InvoiceItem(description="Item", quantity=1, unit_price=Decimal("100"))]
     inv = invoice_service.create_draft("c1", items)
     assert invoice_service.get_invoice(inv.id).id == inv.id
+
 
 def test_finalize_error_not_found(invoice_service):
     with pytest.raises(ValueError, match="not found"):

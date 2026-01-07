@@ -5,6 +5,7 @@ from .models import BaseModel
 
 T = TypeVar("T", bound=BaseModel)
 
+
 class Repository(ABC, Generic[T]):
     """
     Abstract base class for repositories.
@@ -24,8 +25,8 @@ class Repository(ABC, Generic[T]):
     @abstractmethod
     def save(self, entity: T) -> T:
         """
-        Save an entity. 
-        If it's new, create it. 
+        Save an entity.
+        If it's new, create it.
         If it exists, update it, respecting optimistic locking.
         """
         pass

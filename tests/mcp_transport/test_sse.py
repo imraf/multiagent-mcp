@@ -23,7 +23,7 @@ async def test_sse_transport_routes():
 
     test_msg = {"key": "value"}
     response = client.post("/messages", json=test_msg)
-    assert response.status_code == 200
+    assert response.status_code == 200  # noqa: PLR2004
     assert response.json() == {"status": "ok"}
     assert len(received_msgs) == 1
     assert received_msgs[0] == test_msg

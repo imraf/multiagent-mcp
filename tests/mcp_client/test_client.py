@@ -15,7 +15,7 @@ def test_create_invoice_mock(mock_call_tool, mock_listen):
         "items": [{"description": "test", "quantity": 1, "unit_price": "10.0"}],
         "tax_rate": "0.0",
         "invoice_number": None,
-        "version": 0
+        "version": 0,
     }
 
     client = InvoicingClient()
@@ -38,7 +38,7 @@ def test_register_customer_mock(mock_call_tool, mock_listen):
         "email": "contact@acme.com",
         "vat_id": None,
         "address": None,
-        "version": 0
+        "version": 0,
     }
 
     client = InvoicingClient()
@@ -78,24 +78,25 @@ def test_call_tool_success(mock_httpx_cls):
 
     # We need to simulate the SSE listener receiving the response while _call_tool waits.
     # We can do this by using a side_effect on post that triggers the logic.
-    # However, since we are mocking the class, we can just patch InvoicingClient._listen_sse to avoid the thread.
+    # However, since we are mocking the class,
+    # we can just patch InvoicingClient._listen_sse to avoid the thread.
 
     with patch("mcp_client.client.InvoicingClient._listen_sse"):
         client = InvoicingClient()
-        client.client = mock_client_instance # Ensure we use the mock
+        client.client = mock_client_instance  # Ensure we use the mock
 
         # We need to hook into when `post` is called to simulate the response arriving.
         def side_effect(*args, **kwargs):
             # args[0] is the url path '/messages'
             # json payload has the ID
-            payload = kwargs.get('json')
-            req_id = payload['id']
+            payload = kwargs.get("json")
+            req_id = payload["id"]
 
             # Simulate response arrival
             response_message = {
                 "jsonrpc": "2.0",
                 "id": req_id,
-                "result": {"content": [{"type": "text", "text": '{"foo": "bar"}'}]}
+                "result": {"content": [{"type": "text", "text": '{"foo": "bar"}'}]},
             }
             client._handle_message(response_message)
             return mock_response
@@ -120,9 +121,10 @@ def test_call_tool_timeout(mock_httpx_cls):
         with patch("threading.Event.wait", return_value=False):
             try:
                 client._call_tool("some_tool", {})
-                assert False, "Should have raised TimeoutError"
+                raise AssertionError("Should have raised TimeoutError")
             except TimeoutError:
                 pass
+
 
 @patch("httpx.Client")
 def test_call_tool_api_error(mock_httpx_cls):
@@ -134,20 +136,16 @@ def test_call_tool_api_error(mock_httpx_cls):
         client.client = mock_client_instance
 
         def side_effect(*args, **kwargs):
-            payload = kwargs.get('json')
-            req_id = payload['id']
-            response_message = {
-                "jsonrpc": "2.0",
-                "id": req_id,
-                "error": "Something went wrong"
-            }
+            payload = kwargs.get("json")
+            req_id = payload["id"]
+            response_message = {"jsonrpc": "2.0", "id": req_id, "error": "Something went wrong"}
             client._handle_message(response_message)
-            return MagicMock() # response object
+            return MagicMock()  # response object
 
         mock_client_instance.post.side_effect = side_effect
 
         try:
             client._call_tool("some_tool", {})
-            assert False, "Should have raised RuntimeError"
+            raise AssertionError("Should have raised RuntimeError")
         except RuntimeError as e:
             assert "Something went wrong" in str(e)

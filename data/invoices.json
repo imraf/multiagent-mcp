@@ -1258,5 +1258,185 @@
     "status": "draft",
     "tax_rate": "0.0",
     "version": 1
+  },
+  "21df6b95-d6ef-4c9a-925a-cef1418def65": {
+    "id": "21df6b95-d6ef-4c9a-925a-cef1418def65",
+    "invoice_number": null,
+    "customer_id": "cust-1",
+    "items": [
+      {
+        "description": "Test Item",
+        "quantity": 1,
+        "unit_price": "100.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.2",
+    "version": 1
+  },
+  "e4ddbd90-daee-42a7-8697-ce20cd291404": {
+    "id": "e4ddbd90-daee-42a7-8697-ce20cd291404",
+    "invoice_number": "INV-0018",
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "sent",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "71fd6454-e168-4a0e-9c7d-27d9ae9d4e8b": {
+    "id": "71fd6454-e168-4a0e-9c7d-27d9ae9d4e8b",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "cancelled",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "a6607b30-45c9-497b-b5fb-6d191e6bf389": {
+    "id": "a6607b30-45c9-497b-b5fb-6d191e6bf389",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "6501a574-82e2-4276-bbab-fcb9ee172a9e": {
+    "id": "6501a574-82e2-4276-bbab-fcb9ee172a9e",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "6a28bb33-c7ff-417e-8c94-91974eb8bc00": {
+    "id": "6a28bb33-c7ff-417e-8c94-91974eb8bc00",
+    "invoice_number": null,
+    "customer_id": "c2",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "fbeeba33-df49-404b-8f21-3758b8d811ab": {
+    "id": "fbeeba33-df49-404b-8f21-3758b8d811ab",
+    "invoice_number": null,
+    "customer_id": "cust-1",
+    "items": [
+      {
+        "description": "Test Item",
+        "quantity": 1,
+        "unit_price": "100.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.2",
+    "version": 1
+  },
+  "15a42c0a-b7c0-47e2-870c-384aea03baaa": {
+    "id": "15a42c0a-b7c0-47e2-870c-384aea03baaa",
+    "invoice_number": "INV-0019",
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "sent",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "85b2394a-350b-4f1b-a0b1-e3f4124daf0e": {
+    "id": "85b2394a-350b-4f1b-a0b1-e3f4124daf0e",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "cancelled",
+    "tax_rate": "0.0",
+    "version": 2
+  },
+  "e2a0f8f4-4dc1-46ef-9f5f-b2abc67924d0": {
+    "id": "e2a0f8f4-4dc1-46ef-9f5f-b2abc67924d0",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "dc868c84-16f0-4d1e-bc42-abff8eb86e81": {
+    "id": "dc868c84-16f0-4d1e-bc42-abff8eb86e81",
+    "invoice_number": null,
+    "customer_id": "c1",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
+  },
+  "6301a363-0578-4e1f-bd18-9f8b13957748": {
+    "id": "6301a363-0578-4e1f-bd18-9f8b13957748",
+    "invoice_number": null,
+    "customer_id": "c2",
+    "items": [
+      {
+        "description": "Test",
+        "quantity": 1,
+        "unit_price": "10.0"
+      }
+    ],
+    "status": "draft",
+    "tax_rate": "0.0",
+    "version": 1
   }
 }

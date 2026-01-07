@@ -1,4 +1,3 @@
-
 from mcp_core.invoice_service import InvoiceService
 from mcp_core.models import Invoice
 from mcp_core.resource import Resource, ResourceProvider
@@ -20,7 +19,7 @@ class InvoiceResourceProvider(ResourceProvider):
 
         # Parse URI: invoice://{id}/pdf
         parts = uri.replace("invoice://", "").split("/")
-        if len(parts) != 2 or parts[1] != "pdf":
+        if len(parts) != 2 or parts[1] != "pdf":  # noqa: PLR2004
             return None
 
         invoice_id = parts[0]

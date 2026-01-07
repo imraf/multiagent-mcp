@@ -38,11 +38,13 @@ async def test_stdio_transport_receive():
 
     mock_handler.assert_called_once_with(input_message)
 
+
 @pytest.mark.asyncio
 async def test_stdio_transport_close():
     transport = StdioTransport()
     await transport.close()
     # No assertion needed, just checking it doesn't crash
+
 
 @pytest.mark.asyncio
 async def test_stdio_transport_invalid_json():

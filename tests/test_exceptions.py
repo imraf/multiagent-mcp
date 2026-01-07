@@ -16,11 +16,13 @@ def test_mcp_exception_base():
     assert response.details == {"foo": "bar"}
     assert response.request_id == "123"
 
+
 def test_exception_hierarchy():
     """Test inheritance structure."""
     assert issubclass(ConfigurationError, MCPException)
     assert issubclass(ServiceUnavailableError, InfrastructureError)
     assert issubclass(InfrastructureError, MCPException)
+
 
 def test_nested_exceptions():
     """Test wrapping original errors."""

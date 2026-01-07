@@ -1,5 +1,6 @@
 import logging
 import sys
+from logging.handlers import RotatingFileHandler
 from pathlib import Path
 
 import structlog
@@ -37,7 +38,7 @@ def configure_logging(
 
     # Configure structlog
     structlog.configure(
-        processors=processors + [structlog.stdlib.ProcessorFormatter.wrap_for_formatter],
+        processors=[*processors, structlog.stdlib.ProcessorFormatter.wrap_for_formatter],
         logger_factory=structlog.stdlib.LoggerFactory(),
         wrapper_class=structlog.stdlib.BoundLogger,
         cache_logger_on_first_use=True,
@@ -69,21 +70,20 @@ def configure_logging(
         log_path = Path(config.file_path)
         log_path.parent.mkdir(parents=True, exist_ok=True)
 
-        # Basic file handler - in production ideally use a rotating one,
         # but for this scope, a standard FileHandler is a good start.
         # User prompt asked for "log rotation", so let's use RotatingFileHandler.
-        from logging.handlers import RotatingFileHandler
 
         file_handler = RotatingFileHandler(
-            config.file_path,
-            maxBytes=10 * 1024 * 1024, # 10MB
-            backupCount=5
+            filename=config.file_path,
+            maxBytes=10 * 1024 * 1024,  # 10 MB
+            backupCount=5,
         )
         file_handler.setFormatter(formatter)
         root_logger.addHandler(file_handler)
 
     # Set initial context
     structlog.contextvars.bind_contextvars(service=service_name)
+
 
 def get_logger(name: str | None = None) -> structlog.stdlib.BoundLogger:
     """Get a structured logger instance."""

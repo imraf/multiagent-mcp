@@ -24,14 +24,16 @@ Subject: Payment Reminder: Invoice {{ invoice_number }}
 
 Dear {{ customer_name }},
 
-This is a reminder that payment for invoice {{ invoice_number }} (Amount: {{ amount_due }}) was due on {{ due_date }}.
+This is a reminder that payment for invoice {{ invoice_number }} (Amount: {{ amount_due }})
+was due on {{ due_date }}.
 
 {% if tone == 'firm' %}
 We request that you settle this outstanding amount immediately to avoid any service interruptions.
 {% elif tone == 'urgent' %}
 URGENT: This invoice is significantly overdue. Please remit payment immediately.
 {% else %}
-If you have already sent the payment, please disregard this email. Otherwise, we would appreciate it if you could arrange payment at your earliest convenience.
+If you have already sent the payment, please disregard this email.
+Otherwise, we would appreciate it if you could arrange payment at your earliest convenience.
 {% endif %}
 
 Thank you for your business.
@@ -51,7 +53,9 @@ The Finance Team
             PromptArgument(name="total_outstanding", description="Total amount outstanding"),
             PromptArgument(
                 name="overdue_invoices",
-                description="List of overdue invoices (dicts with 'number', 'amount', 'days_overdue')",
+                description=(
+                    "List of overdue invoices (dicts with 'number', 'amount', 'days_overdue')"
+                ),
             ),
         ],
         template="""
@@ -69,7 +73,8 @@ No overdue invoices.
 
 Analysis:
 {% if overdue_invoices|length > 0 %}
-This customer has {{ overdue_invoices|length }} overdue invoices. Immediate follow-up is recommended.
+This customer has {{ overdue_invoices|length }} overdue invoices.
+Immediate follow-up is recommended.
 {% else %}
 This customer is in good standing.
 {% endif %}

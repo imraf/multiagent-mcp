@@ -21,7 +21,8 @@ class Customer(BaseModel):
         # Basic alphanumeric check for VAT ID, can be expanded for specific country codes
         if not re.match(r"^[A-Z]{2}[A-Z0-9]+$", v):
             raise ValueError(
-                "Invalid VAT ID format. Must start with 2 country letters followed by alphanumeric characters."
+                "Invalid VAT ID format. "
+                "Must start with 2 country letters followed by alphanumeric characters."
             )
         return v
 

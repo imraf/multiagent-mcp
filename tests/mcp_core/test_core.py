@@ -12,18 +12,15 @@ def temp_json_file(tmp_path):
     file_path = tmp_path / "test_data.json"
     return str(file_path)
 
+
 @pytest.fixture
 def customer_repo(temp_json_file):
     return JsonFileRepository(Customer, temp_json_file)
 
+
 def test_customer_validation():
     # Valid customer
-    customer = Customer(
-        id="c1",
-        name="Test Corp",
-        email="test@example.com",
-        vat_id="US123456789"
-    )
+    customer = Customer(id="c1", name="Test Corp", email="test@example.com", vat_id="US123456789")
     assert customer.id == "c1"
 
     # Invalid email
@@ -34,6 +31,7 @@ def test_customer_validation():
     with pytest.raises(ValidationError):
         Customer(id="c3", name="Bad VAT", email="ok@example.com", vat_id="123")  # No country code
 
+
 def test_invoice_calculations():
     item1 = InvoiceItem(description="Item 1", quantity=2, unit_price=Decimal("10.00"))
     item2 = InvoiceItem(description="Item 2", quantity=1, unit_price=Decimal("20.00"))
@@ -42,7 +40,7 @@ def test_invoice_calculations():
         id="inv1",
         customer_id="c1",
         items=[item1, item2],
-        tax_rate=Decimal("0.20")  # 20% tax
+        tax_rate=Decimal("0.20"),  # 20% tax
     )
 
     assert item1.total == Decimal("20.00")
@@ -50,6 +48,7 @@ def test_invoice_calculations():
     assert invoice.subtotal == Decimal("40.00")
     assert invoice.tax_amount == Decimal("8.00")
     assert invoice.total_amount == Decimal("48.00")
+
 
 def test_repository_crud(customer_repo):
     customer = Customer(id="c1", name="Test Corp", email="test@example.com")
@@ -67,12 +66,12 @@ def test_repository_crud(customer_repo):
     # Update
     retrieved.name = "Updated Corp"
     updated = customer_repo.save(retrieved)
-    assert updated.version == 2
+    assert updated.version == 2  # noqa: PLR2004
 
     # Verify update persisted
     final = customer_repo.get("c1")
     assert final.name == "Updated Corp"
-    assert final.version == 2
+    assert final.version == 2  # noqa: PLR2004
 
     # List
     all_customers = customer_repo.list()
@@ -83,6 +82,7 @@ def test_repository_crud(customer_repo):
     deleted = customer_repo.delete("c1")
     assert deleted is True
     assert customer_repo.get("c1") is None
+
 
 def test_optimistic_locking(customer_repo):
     customer = Customer(id="lock_test", name="Lock Test", email="lock@test.com")

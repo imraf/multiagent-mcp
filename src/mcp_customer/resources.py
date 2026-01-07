@@ -1,4 +1,3 @@
-
 from mcp_core.invoice_service import InvoiceService
 from mcp_core.resource import Resource, ResourceProvider
 from mcp_customer.service import CustomerService
@@ -21,7 +20,7 @@ class CustomerResourceProvider(ResourceProvider):
 
         # Parse URI: customer://{id}/ledger
         parts = uri.replace("customer://", "").split("/")
-        if len(parts) != 2 or parts[1] != "ledger":
+        if len(parts) != 2 or parts[1] != "ledger":  # noqa: PLR2004
             return None
 
         customer_id = parts[0]

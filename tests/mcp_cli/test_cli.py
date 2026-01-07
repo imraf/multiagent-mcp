@@ -17,7 +17,7 @@ def test_cli_new_invoice(mock_client):
         items=[InvoiceItem(description="Item1", quantity=2, unit_price=50.0)],
         status=InvoiceStatus.DRAFT,
         total_amount=100.0,
-        invoice_number=None
+        invoice_number=None,
     )
     mock_client.create_invoice.return_value = mock_invoice
 
@@ -33,11 +33,7 @@ def test_cli_new_invoice(mock_client):
 
 @patch("mcp_cli.main.client")
 def test_cli_add_customer(mock_client):
-    mock_customer = Customer(
-        id="cust_1",
-        name="NewCustomer",
-        email="new@example.com"
-    )
+    mock_customer = Customer(id="cust_1", name="NewCustomer", email="new@example.com")
     mock_client.register_customer.return_value = mock_customer
 
     result = runner.invoke(app, ["customer-add", "NewCustomer", "new@example.com"])
@@ -45,13 +41,14 @@ def test_cli_add_customer(mock_client):
     assert "Customer added" in result.stdout
     assert "NewCustomer" in result.stdout
 
+
 @patch("mcp_cli.main.client")
 def test_cli_list_invoices(mock_client):
     mock_invoice = Invoice(
         id="inv_1",
         customer_id="cust1",
         items=[InvoiceItem(description="Test Item", quantity=1, unit_price=100.0)],
-        status=InvoiceStatus.SENT
+        status=InvoiceStatus.SENT,
     )
     mock_client.list_invoices.return_value = [mock_invoice]
 
@@ -61,14 +58,11 @@ def test_cli_list_invoices(mock_client):
     assert "inv_1" in result.stdout
     assert "$100.00" in result.stdout
 
+
 @patch("mcp_cli.main.client")
 def test_cli_list_invoices_filter(mock_client):
     mock_invoice = Invoice(
-        id="inv_2",
-        customer_id="cust1",
-        items=[],
-        status=InvoiceStatus.DRAFT,
-        total_amount=50.0
+        id="inv_2", customer_id="cust1", items=[], status=InvoiceStatus.DRAFT, total_amount=50.0
     )
     mock_client.list_invoices.return_value = [mock_invoice]
 
@@ -76,4 +70,3 @@ def test_cli_list_invoices_filter(mock_client):
     assert result.exit_code == 0
     assert "Invoices (draft)" in result.stdout
     assert "draft" in result.stdout
-

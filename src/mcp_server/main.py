@@ -27,6 +27,7 @@ register_customer_tools(mcp)
 # --- 2. Register Resources ---
 resource_provider = InvoiceResourceProvider(invoice_service)
 
+
 @mcp.resource("invoice://{invoice_id}/pdf")
 def get_invoice_pdf(invoice_id: str) -> str:
     """
@@ -35,7 +36,8 @@ def get_invoice_pdf(invoice_id: str) -> str:
     res = resource_provider.get_resource(f"invoice://{invoice_id}/pdf")
     if res:
         return res.text
-    # FastMCP resources usually just return content. Raising error might be appropriate if not found.
+    # FastMCP resources usually just return content.
+    # Raising error might be appropriate if not found.
     raise ValueError(f"Invoice {invoice_id} not found")
 
 
@@ -62,6 +64,7 @@ class FastMCPPromptManagerAdapter:
             except Exception as e:
                 return f"Error rendering prompt: {e}"
 
+
 adapter = FastMCPPromptManagerAdapter(mcp)
 register_advanced_prompts(adapter)
 
@@ -83,7 +86,7 @@ def load_plugins(mcp_instance: FastMCP) -> None:
                 # Python < 3.10 fallback or different behavior
                 plugins = eps.get(group, [])
         else:
-             plugins = []
+            plugins = []
     except Exception:
         plugins = []
 
@@ -95,6 +98,7 @@ def load_plugins(mcp_instance: FastMCP) -> None:
                 logger.info(f"Loaded plugin: {entry_point.name}")
         except Exception as e:
             logger.error(f"Failed to load plugin {entry_point.name}: {e}")
+
 
 load_plugins(mcp)
 

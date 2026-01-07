@@ -52,7 +52,7 @@ class PromptManager:
         """List all registered prompts."""
         return list(self._prompts.values())
 
-    def render_prompt(self, name: str, arguments: dict[str, Any] = None) -> str:
+    def render_prompt(self, name: str, arguments: dict[str, Any] | None = None) -> str:
         """
         Render a prompt with the given arguments.
         Raises ValueError if prompt not found or arguments missing.
