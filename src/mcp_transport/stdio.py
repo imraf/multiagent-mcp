@@ -64,6 +64,6 @@ class StdioTransport(Transport):
         except json.JSONDecodeError:
             # Log error or ignore malformed JSON
             pass
-        except Exception:
+        except Exception as e:
             # Log unexpected errors
-            pass
+            sys.stderr.write(f"Unexpected error in StdioTransport: {e}\n")

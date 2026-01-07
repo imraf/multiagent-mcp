@@ -30,7 +30,7 @@ class InvoicingClient:
         retry_count = 0
         while self._listening:
             try:
-                with httpx.Client(base_url=self.base_url, timeout=None) as client:
+                with httpx.Client(base_url=self.base_url, timeout=None) as client:  # nosec B113
                     with client.stream("GET", "/events") as response:
                         for line in response.iter_lines():
                             if not self._listening:
