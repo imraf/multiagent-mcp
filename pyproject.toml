@@ -54,6 +54,10 @@ module = "tests.*"
 disallow_untyped_defs = false
 check_untyped_defs = false
 
+[[tool.mypy.overrides]]
+module = "dashboard"
+warn_unused_ignores = false
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = "test_*.py"
